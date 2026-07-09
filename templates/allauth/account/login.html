@@ -1,0 +1,47 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+      <div class="card shadow-sm auth-card">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">{% trans "Sign In" %}</h3>
+            {% url 'account_login' as login_url %}
+            {% element form form=form method="post" action=login_url tags="entrance,login" %}
+            {% slot body %}
+              {% csrf_token %}
+              <div class="d-flex flex-column align-items-center">
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+              </div>
+              {{ redirect_field }}
+            {% endslot %}
+
+            {% slot actions %}
+              <div class="d-flex flex-column align-items-center">
+                {% element button type="submit" tags="prominent,login" %}
+                  {% trans "Sign In" %}
+                {% endelement %}
+              </div>
+            {% endslot %}
+          {% endelement %}
+
+          <div class="text-center mt-3 small">
+            <a href="{{ signup_url }}">{{ _("Create an account") }}</a> ·
+            <a href="{% url 'account_reset_password' %}">{{ _("Forgot password?") }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+{% block extra_body %}
+    {{ block.super }}
+    {% if PASSKEY_LOGIN_ENABLED %}
+        {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
+    {% endif %}
+{% endblock %}

@@ -4,5 +4,8 @@
 
 .pyc
 __pycache__/
-# *.sqlite3
+*.sqlite3
 # .env
+
+# to ignore some flake8 errors
+.flake8
