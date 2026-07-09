@@ -47,6 +47,19 @@ else:
 # security settings for production
 DEBUG = development
 
+# Email settings
+# In development, use the console backend so email actions do not require a running SMTP server.
+if development:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+    EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+    EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Allow all hosts in development, restrict to specific host in production
@@ -56,13 +69,11 @@ if development:
         'http://127.0.0.1',
         'http://localhost'
     ]
-    CSRF_COOKIE_DOMAIN = [
-        '127.0.0.1'
-    ]
+    CSRF_COOKIE_DOMAIN = '127.0.0.1'
 else:
     ALLOWED_HOSTS = [config('HOSTNAME')]
     CSRF_TRUSTED_ORIGINS = [config('HOSTNAME')]
-    CSRF_COOKIE_DOMAIN = [config('HOSTNAME')]
+    CSRF_COOKIE_DOMAIN = config('HOSTNAME')
 
 # Application definition
 
@@ -79,20 +90,26 @@ INSTALLED_APPS = [
     'allauth.account',  # account management
     'allauth.socialaccount',  # social account integration
     'crispy_forms',  # for better form rendering
-    ]
+    'crispy_forms.bootstrap',  # for Bootstrap 4 form rendering
+    'home',
+]
 
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+ACCOUNT_LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
 MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-info',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
-    }
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
@@ -127,7 +144,11 @@ ROOT_URLCONF = 'hoop_and_go.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+            os.path.join(BASE_DIR, 'templates', 'allauth', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
