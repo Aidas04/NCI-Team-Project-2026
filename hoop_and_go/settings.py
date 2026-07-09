@@ -18,9 +18,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
-import dj_database_url
-from django.contrib.messages import constants as messages
+from decouple import config  # python-decouple is used to manage environment variables and settings
+import dj_database_url  # configure database using a single URL, for deploying to platforms.
+from django.contrib.messages import constants as messages  # used to customize the message tags used in Django messaging framework.
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,9 +31,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
+# Determine if the application is in development mode
 development = config('DEV_MODE', default=False, cast=bool)
 
-# Use a local secret key fallback in development. In production, SECRET_KEY must be set.
+# Use a local secret key fallback in development.
+# In production, SECRET_KEY must be set by the deployment platform.
 if development:
     SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-secret')
 else:
@@ -42,6 +44,7 @@ else:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+# security settings for production
 DEBUG = development
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -166,7 +169,7 @@ else:
     # Here we choose  database URL from Amazon or w/e we go for
     DATABASE_URL = config('DATABASE_URL', default=None)
     if not DATABASE_URL:
-        raise ValueError("DATABASE_URL is not set in the environment variables.")
+        raise ValueError("DATABASE_URL Unknown!")
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL)
     }

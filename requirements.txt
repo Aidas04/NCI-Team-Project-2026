@@ -1,13 +1,17 @@
 
-asgiref==3.6.0
-dj-database-url==1.0.0
-Django==6.0.6
-django-allauth==0.41.0
-django-countries==7.2.1
-django-crispy-forms==1.14.0
-oauthlib==3.2.2
-python-decouple==3.6
-python3-openid==3.2.0
-pytz==2022.6
-requests-oauthlib==1.3.1
-sqlparse==0.4.3
+# Edited by:
+# Ionut Ciobanu
+# 
+
+# Django apps used by the deployment platform
+asgiref==3.6.0  # Django's ASGI support
+dj-database-url==1.0.0  # Database URL configuration
+Django==6.0.6  # The Django web framework
+django-allauth==0.41.0  # Authentication app for Django
+django-countries==7.2.1  # Country data for Django
+django-crispy-forms==1.14.0  # Form rendering app for Django
+oauthlib==3.2.2  # OAuth library for Python
+python-decouple==3.6  # Environment variable management
+python3-openid==3.2.0  # OpenID support for Python
+pytz==2022.6  # Timezone support
+requests-oauthlib==1.3.1  # OAuth library for requests
