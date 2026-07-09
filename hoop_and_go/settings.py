@@ -90,7 +90,7 @@ INSTALLED_APPS = [
     'allauth.account',  # account management
     'allauth.socialaccount',  # social account integration
     'crispy_forms',  # for better form rendering
-    'crispy_forms.bootstrap',  # for Bootstrap 4 form rendering
+    'crispy_forms.bootstrap',  # for Bootstrap form rendering
     'home',
 ]
 
@@ -125,8 +125,8 @@ ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
 
 # Crispy Forms Configuration
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
