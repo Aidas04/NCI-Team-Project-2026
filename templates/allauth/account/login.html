@@ -6,7 +6,7 @@
 {% endblock head_title %}
 {% block content %}
   <div class="row justify-content-center">
-    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+    <div class="col-6 col-sm-10 col-md-6 col-lg-4">
       <div class="card shadow-sm auth-card">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">{% trans "Sign In" %}</h3>
@@ -14,7 +14,7 @@
             {% element form form=form method="post" action=login_url tags="entrance,login" %}
             {% slot body %}
               {% csrf_token %}
-              <div class="d-flex flex-column align-items-center">
+              <div class="d-flex flex-row justify-content-center space-between">
                 {% element fields form=form unlabeled=True %}
                 {% endelement %}
               </div>
