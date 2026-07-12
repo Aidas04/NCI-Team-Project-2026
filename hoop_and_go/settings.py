@@ -64,12 +64,15 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Allow all hosts in development, restrict to specific host in production
 if development:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
     CSRF_TRUSTED_ORIGINS = [
         'http://127.0.0.1',
-        'http://localhost'
+        'http://127.0.0.1:8000',
+        'http://localhost',
+        'http://localhost:8000',
+        'http://0.0.0.0:8000',
     ]
-    CSRF_COOKIE_DOMAIN = '127.0.0.1'
+    CSRF_COOKIE_DOMAIN = None
 else:
     ALLOWED_HOSTS = [config('HOSTNAME')]
     CSRF_TRUSTED_ORIGINS = [config('HOSTNAME')]
