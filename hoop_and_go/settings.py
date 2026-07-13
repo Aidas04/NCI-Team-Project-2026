@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 #   Edited by:
 #   Ionut Ciobanu
-#
+#   Michal Pokojny //13/07/26
 
 
 from pathlib import Path
@@ -74,9 +74,10 @@ if development:
     ]
     CSRF_COOKIE_DOMAIN = None
 else:
-    ALLOWED_HOSTS = [config('HOSTNAME')]
-    CSRF_TRUSTED_ORIGINS = [config('HOSTNAME')]
-    CSRF_COOKIE_DOMAIN = config('HOSTNAME')
+    HOSTNAME = config('HOSTNAME')
+    ALLOWED_HOSTS = [HOSTNAME]
+    CSRF_TRUSTED_ORIGINS = [f'http://{HOSTNAME}', f'https://{HOSTNAME}']
+    CSRF_COOKIE_DOMAIN = HOSTNAME
 
 # Application definition
 

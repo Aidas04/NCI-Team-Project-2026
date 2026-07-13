@@ -1,8 +1,6 @@
 #   Edited by:
 #   Ionut Ciobanu
-#
-
-version: '3.9'
+#   Michal Pokojny //13/07/26
 
 services:
   web:
@@ -17,14 +15,9 @@ services:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
-      - DEV_MODE=True
-      - DEBUG=True
+      - DEV_MODE=False
+      - DEBUG=False
     volumes:
       - .:/app
-      - ./db.sqlite3:/app/db.sqlite3
     working_dir: /app
     restart: unless-stopped
-
-volumes:
-  sqlite_data:
-    driver: local
