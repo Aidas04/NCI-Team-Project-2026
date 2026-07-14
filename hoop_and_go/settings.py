@@ -64,14 +64,8 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Allow all hosts in development, restrict to specific host in production
 if development:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
-    CSRF_TRUSTED_ORIGINS = [
-        'http://127.0.0.1',
-        'http://127.0.0.1:8000',
-        'http://localhost',
-        'http://localhost:8000',
-        'http://0.0.0.0:8000',
-    ]
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1']
     CSRF_COOKIE_DOMAIN = None
 else:
     HOSTNAME = config('HOSTNAME')
@@ -98,11 +92,16 @@ INSTALLED_APPS = [
     'home',
 ]
 
+ACCOUNT_FORMS = {
+    "login": "forms.CustomLoginForm",
+}
+
+
 SITE_ID = 1
 
+# Redirect URLs after login/logout/signup
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
 ACCOUNT_LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
@@ -134,6 +133,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -150,8 +150,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'allauth'),
-            os.path.join(BASE_DIR, 'templates', 'allauth', 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),  # Include allauth templates
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -234,7 +233,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Use WhiteNoise for production static file serving.
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
