@@ -6,7 +6,8 @@ class Event(models.Model):
     title = models.CharField(max_length=150)
     sport_type = models.CharField(max_length=50)
     location = models.CharField(max_length=200)
-    start_time = models.DateTimeField()
+    date = models.DateField()
+    start_time = models.TimeField()
     capacity = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="mb-4">Available Basketball Events</h2>
+
+  {% if events %} {% for event in events %}
+
+  <div class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h3>{{ event.title }}</h3>
+
+      <p><strong>Sport:</strong> {{ event.sport_type }}</p>
+
+      <p><strong>Location:</strong> {{ event.location }}</p>
+
+      <p><strong>Date:</strong> {{ event.date }}</p>
+
+      <p><strong>Start Time:</strong> {{ event.start_time }}</p>
+
+      <p><strong>Capacity:</strong> {{ event.capacity }} players</p>
+
+      <p><strong>Organiser:</strong> {{ event.organiser.username }}</p>
+
+      <button class="btn btn-primary">Select Event</button>
+    </div>
+  </div>
+
+  {% endfor %} {% else %}
+  <div class="alert alert-info">No events available at the moment.</div>
+  {% endif %}
+</div>
+{% endblock %}
