@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block content %}
+<!-- Event Booking page (Nerijus Kmitas x24170232) -->
 
+{% extends "base.html" %} {% block content %}
 <div class="container mt-5">
   <h2 class="mb-4">Available Basketball Events</h2>
 
@@ -19,14 +20,29 @@
 
       <p><strong>Capacity:</strong> {{ event.capacity }} players</p>
 
-      <p><strong>Organiser:</strong> {{ event.organiser.username }}</p>
+      <p>
+        <strong>Available Places:</strong>
+        {{ event.available_places }} players
+      </p>
 
-      <button class="btn btn-primary">Select Event</button>
+      <p><strong>Organiser:</strong> {{ event.organiser.username }}</p>
+      <form method="POST" action="{% url 'book_event' event.id %}">
+        {% csrf_token %}
+
+      <button class="btn btn-primary" type="submit">
+        Select Event</button>
+      </form>
     </div>
   </div>
 
-  {% endfor %} {% else %}
+  {% endfor %}
+  
+  {% else %}
+  
   <div class="alert alert-info">No events available at the moment.</div>
+  
   {% endif %}
+
 </div>
+
 {% endblock %}
