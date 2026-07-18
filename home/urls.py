@@ -23,5 +23,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='home')
+    path('', views.index, name='home'),
+    path('events/', views.events, name='events'),
+    path("book/<int:event_id>/", views.book_event, name="book_event")
 ]
+

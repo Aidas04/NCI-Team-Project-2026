@@ -7,8 +7,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: django_sqlite_app
-    command: python3 manage.py runserver 0.0.0.0:8080
+    container_name: hoop_and_go
+    entrypoint: ["/app/entrypoint.sh"]
+    command: ["gunicorn", "hoop_and_go.wsgi:application", "--bind", "0.0.0.0:8080"]
     ports:
       - "8080:8080"
     env_file:

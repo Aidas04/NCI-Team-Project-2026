@@ -4,10 +4,10 @@
 
 .pyc
 __pycache__/
-# *.sqlite3
-# *.sqlite3-journal
+*.sqlite3
+*.sqlite3-journal
 .env
-# staticfiles/
+staticfiles/
 
-# to ignore some flake8 errors
-.flake8
+# ignore local tools and their cache
+.localtools
