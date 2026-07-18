@@ -91,6 +91,7 @@ INSTALLED_APPS = [
     'crispy_forms.bootstrap',  # for Bootstrap form rendering
     'home',
     'manage_events',
+    'view_accounts',
 ]
 
 ACCOUNT_FORMS = {
