@@ -9,5 +9,5 @@ __pycache__/
 .env
 staticfiles/
 
-# to ignore some flake8 errors
-.flake8
+# ignore local tools and their cache
+.localtools

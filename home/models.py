@@ -17,12 +17,17 @@ class Event(models.Model):
 
 class Booking(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='bookings')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
     booked_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('event', 'user')
+        constraints = [
+            models.UniqueConstraint(
+                fields = ['event', 'student'],
+                name = 'unique_event_booking'
+            )
+        ]
 
     def __str__(self):
-        return f"{self.user.username} -> {self.event.title}"
+        return f"{self.student.username} -> {self.event.title}"
 # Create your models here.
