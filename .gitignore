@@ -1,0 +1,13 @@
+# Edited by:
+# Ionut Ciobanu
+# Michal Pokojny //13/07/26
+
+.pyc
+__pycache__/
+*.sqlite3
+*.sqlite3-journal
+.env
+staticfiles/
+
+# ignore local tools and their cache
+.localtools
