@@ -10,3 +10,48 @@
     color: red;
     text-decoration: underline;
 }
+
+/* Manage Events Page CSS - Aidas Kibas*/
+
+#m_event_div1 {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#m_p1 {
+    margin-left: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#m_event_input {
+    margin-left: 10px;
+    margin-top: 10px;
+    text-align: center;
+    width: 300px;
+    height: 30px;
+}
+
+#m_display_box {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 600px;
+    height: 350px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+#m_event_button {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    margin-left: 550px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#m_event_button:hover {
+    color: white;
+    background-color: black;
+}
