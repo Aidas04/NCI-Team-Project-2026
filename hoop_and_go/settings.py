@@ -92,6 +92,7 @@ INSTALLED_APPS = [
     'home',
     'manage_events',
     'view_accounts',
+    'vehicle_registration',
 ]
 
 ACCOUNT_FORMS = {
