@@ -1,7 +1,71 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
     <div class="container">
-        <h1 class="colorreds display-2">Welcome to Hoop and Go!</h1>
-        <p class="lead">Your one-stop shop for all your hoop needs!</p>
+        <h1 id="i_head">Welcome to Hoop and Go!</h1>
+        <p class="lead">Browse, Book, and Play! Show your skills off and meet new people with Hoop and Go!</p>
     </div>
+
+    <br>
+
+    <div id="i_div1">   
+
+        <div id="i_div2">
+            <h4>With Hoop and Go, you can easily browse and book a basketball event without the hassle of constant communication with a group of people!</h4>
+
+                <a href="{% url 'events' %}">
+                    <button class="h_btn">View Events</button>
+                </a>
+        </div>
+
+            <div id="i_div3">
+                <img src="{% static 'images/guy_with_bball.jpg' %}" alt="Guy with a basketball">
+            </div>
+
+    </div>
+
+    <br>
+
+    <div id="i_div1">   
+
+        <div id="i_div2">
+            <h4>Manage all of your booked events with ease! Hoop and Go provides simplicity in managing your bookings to ensure you never miss a game.</h4>
+
+                <a href="{% url 'manage_events' %}">
+                    <button class="h_btn">Manage My Events</button>
+                </a>
+        </div>
+
+            <div id="i_div3">
+                <img src="{% static 'images/bball_hoop.jpg' %}" alt="Basketball hoop">
+            </div>
+
+    </div>
+
+    <br>
+
+    <div id="i_div1">   
+
+        <div id="i_div2">
+            <h4>View and manage your account information. Let others know more about you! A world where people unite for basketball is a good world!</h4>
+
+                <a href="{% url 'view_accounts' %}">
+                    <button class="h_btn">View My Account</button>
+                </a>
+        </div>
+
+            <div id="i_div3">
+                <img src="{% static 'images/ladies_bball.jpg' %}" alt="Ladies playing basketball">
+            </div>
+
+    </div>
+
+    <!-- This div structures the footer of the page -->
+
+    <footer class="container-fluid bg-light py-3 mt-5">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
+        </div>
+
+
 {% endblock %}
