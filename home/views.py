@@ -49,6 +49,14 @@ def book_event(request, event_id):
         )
         return redirect("events")
     
+    # If user doesn't have registered vehicle,
+    # ask wheater they want to register one.
+    if not hasattr(request.user, "vehicle"):
+        return redirect(
+            "vehicle_choice",
+            event_id=event.id
+        )
+    
     # Create booking (Nerijus Kmitas x24170232)
     Booking.objects.create(
         event = event,
@@ -58,4 +66,44 @@ def book_event(request, event_id):
         request,
         f"You successfully joined {event.title}!"
     )
+    return redirect("events")
+
+
+@login_required
+def continue_booking(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+
+    # To Prevent duplicate bookings
+    if Booking.objects.filter(
+        event=event,
+        student=request.user
+    ).exists():
+        
+        messages.warning(
+            request,
+            "You have already joined this event!"
+        )
+
+        return redirect("events")
+    
+    #Check if event is fully booked
+    if event.bookings.count() >= event.capacity:
+
+        messages.error(
+            request,
+            "Sorry, this event is fully booked!"
+        )
+
+        return redirect("events")
+    
+    Booking.objects.create(
+        event=event,
+        student=request.user
+    )
+
+    messages.success(
+        request,
+        f"You successfully joined {event.title}!"
+    )
+
     return redirect("events")

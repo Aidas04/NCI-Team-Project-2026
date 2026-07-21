@@ -25,6 +25,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('events/', views.events, name='events'),
-    path("book/<int:event_id>/", views.book_event, name="book_event")
+    path('book/<int:event_id>/', views.book_event, name='book_event'),
+    path('continue_booking/<int:event_id>/', views.continue_booking, name='continue_booking'),
+    
 ]
-
