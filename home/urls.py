@@ -27,5 +27,8 @@ urlpatterns = [
     path('events/', views.events, name='events'),
     path('book/<int:event_id>/', views.book_event, name='book_event'),
     path('continue_booking/<int:event_id>/', views.continue_booking, name='continue_booking'),
-    
+    path('checkout/<int:event_id>/', views.create_checkout_session, name='create_checkout_session'),
+    path('payments/success/<int:booking_id>/', views.payment_success, name='payment_success'),
+    path('payments/cancel/<int:booking_id>/', views.payment_cancel, name='payment_cancel'),
+    path('webhook/stripe/', views.stripe_webhook, name='stripe_webhook'),
 ]
