@@ -1,0 +1,63 @@
+<!-- Vehicle registration page (Nerijus Kmitas x24170232) -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-4">Register Vehicle</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="event_id"
+                value="{{ event_id }}">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Registration Plate
+                </label>
+                {{ form.registration_plate }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Vehicle Make
+                </label>
+                {{ form.make }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Vehicle Model
+                </label>
+                {{ form.model }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Register Vehicle
+            </button>
+        </form>
+
+    </div>
+
+<!-- This div structures the footer of the page -->
+ 
+    <footer class="container-fluid bg-light py-3 mt-5">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
+        </div>
+    </footer>
+
+{% endblock %}

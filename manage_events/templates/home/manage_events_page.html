@@ -1,0 +1,51 @@
+<!-- Manage Events Page - Aidas Kibas -->
+
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- This div structures the heading of the page and the lead text below it -->
+
+    <div class="container">
+        <h2 class="colorblack display-2">Manage Events</h2>
+        <p class="lead">Your booked events live here. Enter the booking ID to manage a specific event.</p>
+    </div>
+
+    <!-- This div structures the text above the manage event div-->
+
+    <div border="1" class="container mt-5 p-3">
+        <h4>My Events</h4>
+        <p class="lead">View and manage your events below.</p>
+        <div class="row">
+            {% for event in events %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.name }}</h5>
+                        </div>    
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- This div structures the manage event box, input, and button for managing events -->
+
+    <div id="m_event_div1">
+        <br>
+        <p id="m_p1">Please Enter Your Booking ID:<input type="text" id="m_event_input" placeholder="Booking ID Here"></p>
+        <br><br>
+        <div id="m_display_box"></div>
+        <br><br>
+        <button id="m_event_button" class="btn btn-primary">Cancel Booking</button>
+
+    </div>
+
+    <!-- This div structures the footer of the page -->
+
+    <footer class="container-fluid bg-light py-3 mt-5">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
+        </div>
+
+{% endblock %}
+ 
