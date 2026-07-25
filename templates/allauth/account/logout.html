@@ -1,25 +1,31 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "account/base_manage.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
-{% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
+{% block content_inner %}
+    <!-- Logout confirmation title -->
+    <h3 class="fw-bold mb-3 text-center">{% trans "Sign Out" %}</h3>
+    <!-- Confirmation message for user -->
+    <p class="text-muted text-center mb-4">{% trans 'Are you sure you want to sign out?' %}</p>
     {% url 'account_logout' as action_url %}
+    <!-- Logout form with hidden fields (no visible form fields) -->
     {% element form method="post" action=action_url no_visible_fields=True %}
         {% slot body %}
             {% csrf_token %}
             {{ redirect_field }}
         {% endslot %}
+        <!-- Submit button with Bootstrap grid layout -->
         {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
+            <div class="d-grid mt-3">
+                {% element button type="submit" %}
+                    {% trans 'Sign Out' %}
+                {% endelement %}
+            </div>
         {% endslot %}
     {% endelement %}
-{% endblock content %}
+{% endblock content_inner %}
