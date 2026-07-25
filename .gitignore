@@ -8,6 +8,3 @@ __pycache__/
 *.sqlite3-journal
 .env
 staticfiles/
-
-# ignore local tools and their cache
-.localtools
