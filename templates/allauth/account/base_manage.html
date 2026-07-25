@@ -1,1 +1,26 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "allauth/layouts/manage.html" %}
+
+{% block content %}
+    <!-- Account management page section with responsive padding -->
+    <section class="auth-page py-4 py-md-5">
+        <!-- Centered container for account management forms -->
+        <div class="row justify-content-center mx-0">
+            <!-- Responsive column wider than authentication pages for account management content -->
+            <!-- col-12: 100% on mobile, col-lg-10: 83.33% on large screens, col-xl-8: 66.67% on extra large screens -->
+            <div class="col-12 col-lg-10 col-xl-8">
+                <!-- Card container with custom manage authentication panel styling -->
+                <div class="card shadow-sm border-0 auth-panel auth-panel-manage">
+                    <!-- Card body with responsive padding for account management forms -->
+                    <div class="card-body p-4 p-md-5">
+                        <!-- Block for child templates (email, password change, phone change) to override -->
+                        {% block content_inner %}{% endblock content_inner %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

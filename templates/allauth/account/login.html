@@ -1,46 +1,40 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load allauth account %}
 {% block head_title %}
     {% trans "Sign In" %}
 {% endblock head_title %}
+{% block content_inner %}
+    <h1 class="auth-title text-center mb-3">{% trans "Sign In" %}</h1>
+    {% url 'account_login' as login_url %}
+    <!-- Login form using CustomLoginForm with Bootstrap styling -->
+    {% element form form=form method="post" action=login_url tags="entrance,login" %}
+        {% slot body %}
+            {% csrf_token %}
+            <!-- Render form fields (username/email and password) -->
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {{ redirect_field }}
+        {% endslot %}
+        <!-- Submit button with Bootstrap styling -->
+        {% slot actions %}
+            {% element button type="submit" tags="prominent,login" %}
+                {% trans "Sign In" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
 
-
-
-
-{% block content %}
-  <div class="row justify-content-center">
-    <div class="col-6 col-sm-10 col-md-6 col-lg-4">
-      <div class="card shadow-sm auth-card">
-        <div class="card-body">
-          <h3 class="card-title text-center mb-3">{% trans "Sign In" %}</h3>
-            {% url 'account_login' as login_url %}
-            {% element form form=form method="post" action=login_url tags="entrance,login" %}
-            {% slot body %}
-              {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-              {{ redirect_field }}
-            {% endslot %}
-
-            {% slot actions %}
-              <div class="d-flex flex-column align-items-center">
-                {% element button type="submit" tags="prominent,login" %}
-                  {% trans "Sign In" %}
-                {% endelement %}
-              </div>
-            {% endslot %}
-          {% endelement %}
-
-          <div class="text-center mt-3 small">
-            <a href="{{ signup_url }}">{{ _("Create an account") }}</a> ·
-            <a href="{% url 'account_reset_password' %}">{{ _("Forgot password?") }}</a>
-          </div>
-        </div>
-      </div>
+    <!-- Links to signup and password reset pages -->
+    <div class="auth-links text-center mt-3 small">
+        <a href="{{ signup_url }}">{{ _("Create an account") }}</a>
+        <span class="mx-1">&middot;</span>
+        <a href="{% url 'account_reset_password' %}">{{ _("Forgot password?") }}</a>
     </div>
-  </div>
-{% endblock content %}
+{% endblock content_inner %}
 {% block extra_body %}
     {{ block.super }}
     {% if PASSKEY_LOGIN_ENABLED %}

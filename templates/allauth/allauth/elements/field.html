@@ -1,7 +1,12 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% load allauth %}
 {{ attrs.errors }}
 <p>
     {% if attrs.type == "textarea" %}
+        <!-- Render textarea field with label -->
         <label for="{{ attrs.id }}">
             {% slot label %}
             {% endslot %}
@@ -13,20 +18,25 @@
                   {% if attrs.checked %}checked{% endif %}
                   {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
                   {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
-                  {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}>{% slot value %}{% endslot %}</textarea>
+                  {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+                  <!-- Support custom class attribute for Bootstrap styling -->
+                  {% if attrs.class %}class="{{ attrs.class }}"{% endif %}>{% slot value %}{% endslot %}</textarea>
     {% else %}
         {% if attrs.type != "checkbox" and attrs.type != "radio" %}
+            <!-- Render label for non-checkbox/radio fields -->
             <label for="{{ attrs.id }}">
                 {% slot label %}
                 {% endslot %}
             </label>
         {% endif %}
+        <!-- Render input field with support for Bootstrap classes -->
         <input {% if attrs.required %}required{% endif %}
                {% if attrs.disabled %}disabled{% endif %}
                {% if attrs.readonly %}readonly{% endif %}
                {% if attrs.checked %}checked{% endif %}
                {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
                {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+               {% if attrs.class %}class="{{ attrs.class }}"{% endif %}
                {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
                {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
                {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}

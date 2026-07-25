@@ -1,3 +1,7 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "base.html" %}
 {% load i18n %}
 {% block extra_head %}
@@ -5,17 +9,19 @@
 {% endblock extra_head %}
 
 {% block content %}
-    <div class="container mt-5">
+    <div class="container py-4 py-md-5">
+        <!-- Display Django messages (alerts, notifications) with Bootstrap alert styling -->
         {% if messages %}
-            <div>
+            <div class="alert alert-info shadow-sm">
                 <strong>{% trans "Messages:" %}</strong>
-                <ul>
+                <ul class="mb-0 mt-2">
                     {% for message in messages %}
                         <li>{{ message }}</li>
                     {% endfor %}
                 </ul>
             </div>
         {% endif %}
+        <!-- Block for allauth child templates to override with specific page content -->
         {% block body %}
         {% endblock body %}
     </div>
