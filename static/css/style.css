@@ -11,11 +11,31 @@
     text-decoration: underline;
 }
 
+/*Nav Bar CSS - Aidas Kibas*/
+
+#home-link {
+    background-color: rgb(254, 254, 254);
+    color: rgb(20, 191, 221);
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 30px;
+    padding: 8px;
+    text-align: center;
+}
+
+#home-link-profile {
+    background-color: rgb(254, 254, 254);
+    color: rgb(20, 191, 221);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
 /* Home Page CSS - Aidas Kibas*/
 
 #i_head {
     color: rgb(20, 191, 221);
-    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 1px 1px 1px #000000;
     margin-top: 20px;
 }
 
@@ -34,16 +54,16 @@
 
 .h_btn {
     color: white;
-    background-color: rgb(17, 186, 208);
+    background-color: rgb(20, 191, 221);
     border: 1px solid rgb(255, 255, 255);
     border-radius: 10px;
     padding: 5px 10px;
 }
 
 .h_btn:hover {
-    color: rgb(17, 186, 208);
+    color: rgb(20, 191, 221);
     background-color: white;
-    border: 1px solid rgb(17, 186, 208);
+    border: 1px solid rgb(20, 191, 221);
 }
 
 #i_div3 img{
