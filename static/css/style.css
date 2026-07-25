@@ -114,3 +114,25 @@
     color: white;
     background-color: black;
 }
+
+/* View Accounts Page CSS - Aidas Kibas */
+
+#v_head {
+    color: rgb(20, 191, 221);
+    text-shadow: 1px 1px 1px #000000;
+    margin-top: 20px;
+}
+
+#account_div {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 600px;
+}
+
+#need_account_div {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 600px;
+}
