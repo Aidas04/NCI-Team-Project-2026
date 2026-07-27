@@ -419,7 +419,8 @@
 }
 
 #i_div1 {
-    border: 2px solid black;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     padding: 10px;
     display: flex;
@@ -446,50 +447,57 @@
 }
 
 #i_div3 img{
-    width: 510px;
+    width: 450px;
+}
+
+/* Events Page CSS - Aidas Kibas*/
+
+#e_head {
+    color: rgb(20, 191, 221);
+    text-shadow: 1px 1px 1px #000000;
+    margin-top: 20px;
 }
 
 /* Manage Events Page CSS - Aidas Kibas*/
 
-#m_event_div1 {
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 15px;
-}
-
-#m_p1 {
-    margin-left: 10px;
-    font-weight: bold;
-    text-align: center;
-}
-
-#m_event_input {
-    margin-left: 10px;
-    margin-top: 10px;
-    text-align: center;
-    width: 300px;
-    height: 30px;
-}
-
-#m_display_box {
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 600px;
-    height: 350px;
-    margin: 10px auto;
-    padding: 10px;
-}
-
-#m_event_button {
-    color: black;
-    background-color: white;
-    border: 2px solid black;
-    margin-left: 550px;
+#m_head{
+    color: rgb(20, 191, 221);
+    text-shadow: 1px 1px 1px #000000;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
-#m_event_button:hover {
+#m_display{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-btn {
     color: white;
-    background-color: black;
+    background-color: rgb(199, 10, 10);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.cancel-btn:hover {
+    color: rgb(199, 10, 10);
+    background-color: white;
+    border: 1px solid rgb(199, 10, 10);
+}
+
+#remove-btn {
+    color: white;
+    background-color: rgb(199, 10, 10);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+#remove-btn:hover {
+    color: rgb(199, 10, 10);
+    background-color: white;
+    border: 1px solid rgb(199, 10, 10);
 }
