@@ -2,45 +2,94 @@
 
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
-    <!-- This div structures the heading of the page and the lead text below it -->
+    <!-- This div structures the heading of the page and the text below it -->
 
     <div class="container">
-        <h2 class="colorblack display-2">Manage Events</h2>
-        <p class="lead">Your booked events live here. Enter the booking ID to manage a specific event.</p>
+        <h1 id="m_head">Manage Events</h1>
+        <p class="lead">Your booked events live here. Scroll through to view the details of a specific event!</p>
     </div>
 
-    <!-- This div structures the text above the manage event div-->
+    <!-- This div structures the display of the user's booked events -->
 
     <div border="1" class="container mt-5 p-3">
-        <h4>My Events</h4>
-        <p class="lead">View and manage your events below.</p>
-        <div class="row">
-            {% for event in events %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ event.name }}</h5>
-                        </div>    
-                    </div>
-                </div>
-            {% endfor %}
+        <h3>My Bookings</h3>
+        <p class="lead">View and manage your bookings below.</p><br>
+        {% if request.user.is_authenticated %}
+            <p class="lead">You are logged in as: <strong>{{ request.user.username }}</strong>.</p>
+
+            {% if bookings %}
+                {% for booking in bookings %}
+                    <div id="m_display">
+                        {% if booking.is_past %}
+                            <p style="color: red;"><strong>Status:</strong> Past Event</p>
+                            <p><strong>Event:</strong> {{ booking.event.title }}</p>
+                            <p><strong>Sport:</strong> {{ booking.event.sport_type }}</p>
+                            <p><strong>Location:</strong> {{ booking.event.location }}</p>
+                            <p><strong>Date:</strong> {{ booking.event.date }}</p>
+                            <p><strong>Time:</strong> {{ booking.event.start_time }}</p>
+                        {% else %}
+                            <p style="color: green;"><strong>Status:</strong> Upcoming Event</p>
+                            <p><strong>Event:</strong> {{ booking.event.title }}</p>
+                            <p><strong>Sport:</strong> {{ booking.event.sport_type }}</p>
+                            <p><strong>Location:</strong> {{ booking.event.location }}</p>
+                            <p><strong>Date:</strong> {{ booking.event.date }}</p>
+                            <p><strong>Time:</strong> {{ booking.event.start_time }}</p>
+                        {% endif %}
+                        
+                        {% if booking.is_past %}
+                        <form method="post" action="{% url 'remove_booking' booking.id %}">
+                            {% csrf_token %}
+                            <button id="remove-btn">Remove Booking</button>
+                        </form>
+                        {% else %}
+                        {% if pending_booking and pending_booking.id == booking.id %}
+                        <form method="post" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                        <input type="hidden" name="confirm_refund" value="1">
+                        <button type="submit" class="cancel-btn">Confirm Cancelation</button>
+                        </form>
+                        {% else %}
+                        <form method="post" action="{% url 'cancel_booking' booking.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                        <button type="submit" class="cancel-btn">Request Cancelation</button><br>
+                        </form>
+                        {% endif %}
+                        {% endif %}
+                    </div><br>
+                {% endfor %}
+            {% else %}
+                <p>No bookings found.</p>
+            {% endif %}
+        {% else %}
+            <p>You are not logged in. Please log in to view your events.</p>
+        {% endif %}
+    </div>
+
+    <br><br>
+
+    <h3>View all Events:</h3>
+    
+    <div id="i_div1">   
+
+        <div id="i_div2">
+            <h4>With Hoop and Go, you can easily browse and book a basketball event without the hassle of constant communication with a group of people!</h4>
+
+                <a href="{% url 'events' %}">
+                    <button class="h_btn">View Events</button>
+                </a>
         </div>
-    </div>
 
-    <!-- This div structures the manage event box, input, and button for managing events -->
-
-    <div id="m_event_div1">
-        <br>
-        <p id="m_p1">Please Enter Your Booking ID:<input type="text" id="m_event_input" placeholder="Booking ID Here"></p>
-        <br><br>
-        <div id="m_display_box"></div>
-        <br><br>
-        <button id="m_event_button" class="btn btn-primary">Cancel Booking</button>
+            <div id="i_div3">
+                <img src="{% static 'images/guy_with_bball.jpg' %}" alt="Guy with a basketball">
+            </div>
 
     </div>
 
-    <!-- This div structures the footer of the page -->
+     <!-- This div structures the footer of the page -->
 
     <footer class="container-fluid bg-light py-3 mt-5">
         <div class="text-center">
