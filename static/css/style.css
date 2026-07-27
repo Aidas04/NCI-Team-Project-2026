@@ -1,6 +1,6 @@
 
 /* Edited by:
-   Ionut Ciobanu
+    Ionut Ciobanu
     Aidas Kibas
  */
 
@@ -11,12 +11,6 @@
     display: none !important;
 }
 
-
-/* ========================================
-   AUTHENTICATION PAGES STYLING
-   Bootstrap responsive design with custom styling
-   ======================================== */
-
 /* Main authentication page container - full width */
 .auth-page {
     width: 100%;
@@ -24,8 +18,8 @@
 
 /* Authentication card styling with gradient background and shadow */
 .auth-card {
-    border: 0;                                  /* Remove default border */
-    border-radius: 1.5rem;                      /* Rounded corners */
+    border: 0;
+    border-radius: 1.5rem;
     background: linear-gradient(180deg, #ffffff 0%, #f5fcfd 100%);  /* Subtle gradient */
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);  /* Soft shadow for depth */
 }
@@ -45,14 +39,14 @@
 .auth-page h1,
 .auth-page h2,
 .auth-title {
-    color: #212529;                    /* Dark text */
-    font-weight: 700;                  /* Bold */
+    color: #212529;
+    font-weight: 700; 
 }
 
 /* Large heading size with responsive scaling */
 .auth-page h1,
 .auth-title {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);  /* Responsive between 1.75rem and 2.25rem */
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
 }
 
 /* Secondary heading size */
@@ -63,14 +57,14 @@
 
 /* Paragraph text styling */
 .auth-page p {
-    color: #495057;                    /* Medium gray */
-    line-height: 1.6;                  /* Better readability */
+    color: #495057;
+    line-height: 1.6;
 }
 
 /* Form grid layout with consistent spacing */
 .auth-page form {
-    display: grid;                     /* Use CSS grid for form layout */
-    gap: 1rem;                         /* Space between form rows */
+    display: grid;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
@@ -83,55 +77,55 @@
 
 /* Form label styling */
 .auth-page label {
-    display: block;                    /* Full width labels */
-    margin-bottom: 0.45rem;            /* Space below label */
-    color: #212529;                    /* Dark text */
-    font-weight: 600;                  /* Semi-bold */
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #212529;
+    font-weight: 600;
 }
 
 /* Form input fields styling (text, email, password, select, textarea) */
 .auth-page input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
 .auth-page textarea,
 .auth-page select {
-    width: 100%;                       /* Full width inputs */
-    border: 1px solid #ced4da;         /* Light gray border */
-    border-radius: 0.75rem;            /* Rounded corners */
-    padding: 0.75rem 0.9rem;           /* Comfortable padding */
-    background-color: #fff;            /* White background */
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;  /* Smooth focus transition */
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.9rem;
+    background-color: #fff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /* Input focus state with blue border and glow effect */
 .auth-page input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):focus,
 .auth-page textarea:focus,
 .auth-page select:focus {
-    border-color: #86b7fe;             /* Light blue border */
-    outline: 0;                        /* Remove outline */
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);  /* Blue glow */
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
 /* Checkbox and radio button styling */
 .auth-page input[type="checkbox"],
 .auth-page input[type="radio"] {
-    margin-right: 0.5rem;              /* Space to the right of checkbox/radio */
+    margin-right: 0.5rem;
 }
 
 /* Form error list styling */
 .auth-page ul.errorlist {
-    list-style: none;                  /* Remove bullet points */
-    margin: 0 0 0.5rem;                /* Margin below errors */
-    padding: 0;                        /* Remove default padding */
-    color: #dc3545;                    /* Red for errors */
-    font-size: 0.95rem;                /* Slightly smaller text */
+    list-style: none;
+    margin: 0 0 0.5rem;
+    padding: 0;
+    color: #dc3545;
+    font-size: 0.95rem;
 }
 
 /* Help text styling for form fields */
 .auth-page .helptext,
 .auth-page form > p > span {
-    display: block;                    /* Block display for full width */
-    margin-top: 0.4rem;                /* Space above help text */
-    color: #6c757d;                    /* Medium gray */
-    font-size: 0.9rem;                 /* Smaller text */
+    display: block;
+    margin-top: 0.4rem;
+    color: #6c757d;
+    font-size: 0.9rem;
 }
 
 /* Hide help text links */
@@ -144,7 +138,7 @@
 .auth-page .btn,
 .auth-page .auth-provider-list a,
 .auth-page .auth-links a {
-    transition: all 0.15s ease-in-out;  /* Smooth transitions */
+    transition: all 0.15s ease-in-out;
 }
 
 /* Remove text decoration from button links */
@@ -159,75 +153,76 @@
 .auth-page button,
 .auth-page form button,
 .auth-page input[type="submit"] {
-    width: 100%;                       /* Full width buttons */
-    border: 1px solid transparent;     /* Transparent border */
-    border-radius: 999px;              /* Fully rounded pill shape */
-    padding: 0.8rem 1rem;              /* Comfortable padding */
-    background-color: #0d6efd;         /* Bootstrap blue */
-    color: #fff;                       /* White text */
-    font-weight: 600;                  /* Bold */
+    width: 30%;
+    place-self: center;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.8rem 1rem;
+    background-color: #0d6efd;
+    color: #fff;
+    font-weight: 600;
 }
 
 /* Button hover state (darker blue) */
 .auth-page button:hover,
 .auth-page form button:hover,
 .auth-page input[type="submit"]:hover {
-    background-color: #0b5ed7;         /* Darker blue on hover */
+    background-color: #0b5ed7;
 }
 
 /* Form action group layout (grid for multiple buttons) */
 .auth-page form > div:last-child,
 .auth-page .auth-action-group {
-    display: grid;                     /* Use grid layout */
-    gap: 0.75rem;                      /* Space between buttons */
+    display: grid;
+    gap: 0.75rem;
 }
 
 /* List styling for authentication pages */
 .auth-page ul {
-    padding-left: 1.2rem;              /* Indentation for bullets */
+    padding-left: 1.2rem;
 }
 
 /* Horizontal rule styling */
 .auth-page hr {
-    margin: 1.5rem 0;                  /* Vertical spacing */
+    margin: 1.5rem 0;
 }
 
 /* Table styling */
 .auth-page table {
-    width: 100%;                       /* Full width table */
+    width: 100%;
 }
 
 /* Table cell styling (thead and tbody) */
 .auth-page th,
 .auth-page td {
-    padding: 0.65rem 0.25rem;          /* Cell padding */
-    vertical-align: top;               /* Align to top */
+    padding: 0.65rem 0.25rem;
+    vertical-align: top;
 }
 
 /* Badge styling (verification, primary, etc.) */
 .auth-page .badge {
-    margin-left: 0.35rem;              /* Space to the left */
+    margin-left: 0.35rem;
 }
 
 /* Link styling in authentication pages */
 .auth-page .auth-links a,
 .auth-page a {
-    color: #0d6efd;                    /* Bootstrap blue */
+    color: #0d6efd;
 }
 
 /* Link hover state */
 .auth-page .auth-links a:hover,
 .auth-page a:hover {
-    color: #0a58ca;                    /* Darker blue on hover */
+    color: #0a58ca;
 }
 
 /* Social/Provider login list styling */
 .auth-page .auth-provider-list {
-    list-style: none;                  /* Remove bullets */
-    padding: 0;                        /* Remove padding */
-    margin: 1rem 0 0;                  /* Top margin */
-    display: grid;                     /* Grid layout */
-    gap: 0.75rem;                      /* Space between items */
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    gap: 0.75rem;
 }
 
 /* Social provider list item styling */
@@ -387,6 +382,12 @@
 
     .auth-page form {
         gap: 0.85rem;
+    }
+
+    .auth-page button,
+    .auth-page form button,
+    .auth-page input[type="submit"] {
+        width: 50%;
     }
 }
 
