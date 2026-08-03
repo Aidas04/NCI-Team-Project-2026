@@ -52,3 +52,54 @@ class VehicleRegistrationViewTests(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse("vehicle_registration"))
         self.assertEqual(response.status_code, 200)
+
+    def test_vehicle_registration_success(self):
+        self.client.force_login(self.user)
+        response = self.client.post(reverse("vehicle_registration"),
+        {
+            "registration_plate": "241-D-12345",
+            "make": "Toyota",
+            "model": "Corolla",
+        })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Vehicle.objects.count(), 1)
+
+    def test_update_existing_vehicle(self):
+        Vehicle.objects.create(
+            student=self.user,
+            registration_plate="241-D-11111",
+            make="Toyota",
+            model="Corolla",
+        )
+
+        self.client.force_login(self.user)
+        self.client.post(
+            reverse("vehicle_registration"),
+            {
+                "registration_plate": "241-D-22222",
+                "make": "Honda",
+                "model": "Civic",
+            }
+        )
+
+        vehicle = Vehicle.objects.get(student=self.user)
+
+        self.assertEqual(
+            vehicle.registration_plate,
+            "241-D-22222"
+        )
+    def test_invalid_post_does_not_create_vehicle(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse("vehicle_registration"),
+            {
+                "registration_plate": "",
+                "make": "",
+                "model": "",
+            }
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Vehicle.objects.count(), 0)
+        
