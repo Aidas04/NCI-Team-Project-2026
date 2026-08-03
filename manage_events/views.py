@@ -1,12 +1,12 @@
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import timezone
 from datetime import datetime
 
 from home.models import Booking
 
-
+@login_required(login_url='account_login')
 def manage_events(request):
     bookings = []
 
@@ -78,13 +78,3 @@ def cancel_booking(request, booking_id):
             "pending_booking": None,
         }
     )
-
-#    if request.user.is_authenticated:
- #       try:
-  #          booking = Booking.objects.get(id=booking_id, student=request.user)
-   #         booking.delete()
-    #        messages.success(request, "Booking canceled successfully.")
-     #   except Booking.DoesNotExist:
-      #      messages.error(request, "Booking not found.")
-
-    #return manage_events(request)  # Redirect back to the manage events page
