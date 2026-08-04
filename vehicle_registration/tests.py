@@ -6,7 +6,7 @@ from .forms import VehicleRegistrationForm
 
 User = get_user_model()
 
-
+# Testing performed by (Nerijus Kmitas x24170232)
 class VehicleModelTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
