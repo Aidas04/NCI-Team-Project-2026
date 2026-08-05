@@ -24,13 +24,18 @@ def events(request):
         Q(date__gt=now.date()) | Q(date=now.date(), start_time__gte=now.time())
     ).order_by("date", "start_time")
 
+    # basic search, just checking location for now, can add more later
+    search_query = request.GET.get("location", "").strip()
+    if search_query:
+        events = events.filter(location__icontains=search_query)
+
     for event in events:
         event.available_places = event.capacity - event.bookings.count()
 
     return render(
         request,
         "home/events.html",
-        {"events": events})
+        {"events": events, "search_query": search_query})
 
 # Book event (Nerijus Kmitas x24170232)
 @login_required
