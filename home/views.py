@@ -106,13 +106,17 @@ def create_checkout_session(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     booking, _ = Booking.objects.get_or_create(event=event, student=request.user)
 
+    # MP stripe wants the price in cents not euros, so we times by 100
+    # was hardcoded to 1000 before which was wrong, now using actual event price
+    unit_amount = int(event.price * 100)
+
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
             'price_data': {
                 'currency': 'eur',
                 'product_data': {'name': f"Booking: {event.title}"},
-                'unit_amount': 1000,
+                'unit_amount': unit_amount,
             },
             'quantity': 1,
         }],
@@ -124,7 +128,7 @@ def create_checkout_session(request, event_id):
 
     Payment.objects.update_or_create(
         booking=booking,
-        defaults={'stripe_checkout_id': session.id, 'amount': 10.00, 'status': 'pending'}
+        defaults={'stripe_checkout_id': session.id, 'amount': event.price, 'status': 'pending'}
     )
 
     return redirect(session.url, code=303)
