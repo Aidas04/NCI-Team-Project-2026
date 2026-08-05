@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 import stripe
 from django.conf import settings
+from django.db.models import Q
+from django.utils import timezone
 from .models import Event, Booking, Payment
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -17,7 +19,10 @@ def index(request):
 
 # Events selection page (Nerijus x24170232)
 def events(request):
-    events = Event.objects.all().order_by("date", "start_time")
+    now = timezone.localtime()
+    events = Event.objects.filter(
+        Q(date__gt=now.date()) | Q(date=now.date(), start_time__gte=now.time())
+    ).order_by("date", "start_time")
 
     for event in events:
         event.available_places = event.capacity - event.bookings.count()
