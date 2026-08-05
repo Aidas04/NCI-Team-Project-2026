@@ -1,0 +1,27 @@
+<!-- simple profile page so people can update their name -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>My Details</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>First name</label>
+        <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control mb-3">
+
+        <label>Last name</label>
+        <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control mb-3">
+
+        <p class="text-muted">Want to change your email or password? <a href="{% url 'account_email' %}">Go here</a>.</p>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+    {% if user.vehicle %}
+        <hr>
+        <h4>My Registered Vehicle</h4>
+        <p>Plate: {{ user.vehicle.registration_plate }}</p>
+        <p>Make/Model: {{ user.vehicle.make }} {{ user.vehicle.model }}</p>
+    {% endif %}
+</div>
+{% endblock %}

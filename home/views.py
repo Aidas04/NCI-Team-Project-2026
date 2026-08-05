@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 import stripe
 from django.conf import settings
 from django.db.models import Q
@@ -24,13 +25,23 @@ def events(request):
         Q(date__gt=now.date()) | Q(date=now.date(), start_time__gte=now.time())
     ).order_by("date", "start_time")
 
+    # basic search, just checking location for now, can add more later
+    search_query = request.GET.get("location", "").strip()
+    if search_query:
+        events = events.filter(location__icontains=search_query)
+
     for event in events:
         event.available_places = event.capacity - event.bookings.count()
+
+    # only show 6 events per page so the list doesnt get too long
+    paginator = Paginator(events, 6)
+    page_number = request.GET.get("page")
+    events_page = paginator.get_page(page_number)
 
     return render(
         request,
         "home/events.html",
-        {"events": events})
+        {"events": events_page, "search_query": search_query})
 
 # Book event (Nerijus Kmitas x24170232)
 @login_required
@@ -106,13 +117,17 @@ def create_checkout_session(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     booking, _ = Booking.objects.get_or_create(event=event, student=request.user)
 
+    # MP stripe wants the price in cents not euros, so we times by 100
+    # was hardcoded to 1000 before which was wrong, now using actual event price
+    unit_amount = int(event.price * 100)
+
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
             'price_data': {
                 'currency': 'eur',
                 'product_data': {'name': f"Booking: {event.title}"},
-                'unit_amount': 1000,
+                'unit_amount': unit_amount,
             },
             'quantity': 1,
         }],
@@ -124,7 +139,7 @@ def create_checkout_session(request, event_id):
 
     Payment.objects.update_or_create(
         booking=booking,
-        defaults={'stripe_checkout_id': session.id, 'amount': 10.00, 'status': 'pending'}
+        defaults={'stripe_checkout_id': session.id, 'amount': event.price, 'status': 'pending'}
     )
 
     return redirect(session.url, code=303)
