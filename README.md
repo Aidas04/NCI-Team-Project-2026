@@ -142,6 +142,17 @@ The core entities are User, Event, Booking, and Payment (future feature), linked
 ## Testing 
 <br>
 
+Automated unit tests cover:
+- Event listing (past events are correctly hidden)
+- Booking flow (capacity limits, duplicate booking prevention)
+- Manage events (viewing and removing bookings)
+- Vehicle registration (model, form, and view access control)
+
+Run all tests with:
+```bash
+docker compose exec web python manage.py test --keepdb
+```
+
 ## Technologies Used
 
 - Python
