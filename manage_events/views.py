@@ -3,12 +3,28 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import UserChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from datetime import datetime
 from home.models import Event
 from .forms import CreateEventForm
 from home.models import Booking
+
+
+# logged in user can change first name and last name, allauth already handles email/password
+@login_required(login_url='account_login')
+def edit_profile(request):
+    user = request.user
+
+    if request.method == "POST":
+        user.first_name = request.POST.get("first_name", "").strip()
+        user.last_name = request.POST.get("last_name", "").strip()
+        user.save(update_fields=["first_name", "last_name"])
+        messages.success(request, "Your details have been updated.")
+        return redirect("edit_profile")
+
+    return render(request, "manage_events/edit_profile.html", {"user": user})
 
 # organiser create event page, only logged in users can get here
 # we also check the password matches before letting them create the event
