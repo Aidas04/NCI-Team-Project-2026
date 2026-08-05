@@ -1,1 +1,15 @@
 {% extends "allauth/layouts/manage.html" %}
+
+{% block content %}
+	<section class="auth-page py-4 py-md-5">
+		<div class="row justify-content-center mx-0">
+			<div class="col-12 col-lg-10 col-xl-8">
+				<div class="card shadow-sm border-0 auth-panel auth-panel-manage">
+					<div class="card-body p-4 p-md-5">
+						{% block auth_card_content %}{% block content_inner %}{% block content %}{% endblock content %}{% endblock content_inner %}{% endblock auth_card_content %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}

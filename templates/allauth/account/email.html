@@ -1,25 +1,30 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "account/base_manage_email.html" %}
 {% load static allauth i18n %}
 {% block head_title %}
     {% trans "Email Addresses" %}
 {% endblock head_title %}
-{% block content %}
-    {% element h1 %}
-        {% trans "Email Addresses" %}
-    {% endelement %}
+{% block content_inner %}
+    <!-- Email management form title -->
+    <h3 class="fw-bold mb-4 text-center">{% trans "Email Addresses" %}</h3>
     {% if emailaddresses %}
-        {% element p %}
-            {% trans 'The following email addresses are associated with your account:' %}
-        {% endelement %}
+        <!-- Instructions for managing email addresses -->
+        <p class="text-muted text-center mb-4">{% trans 'The following email addresses are associated with your account:' %}</p>
         {% url 'account_email' as email_url %}
+        <!-- Email selection form with radio buttons for each email address -->
         {% element form form=form action=email_url method="post" tags="email,list" %}
             {% slot body %}
                 {% csrf_token %}
+                <!-- Display each associated email with verification and primary status badges -->
                 {% for radio in emailaddress_radios %}
                     {% with emailaddress=radio.emailaddress %}
                         {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
                             {% slot label %}
                                 {{ emailaddress.email }}
+                                <!-- Show verification badge (green if verified, yellow if unverified) -->
                                 {% if emailaddress.verified %}
                                     {% element badge tags="success,email,verified" %}
                                         {% translate "Verified" %}
@@ -29,6 +34,7 @@
                                         {% translate "Unverified" %}
                                     {% endelement %}
                                 {% endif %}
+                                <!-- Show primary badge if this is the primary email -->
                                 {% if emailaddress.primary %}
                                     {% element badge tags="email,primary" %}
                                         {% translate "Primary" %}
@@ -39,43 +45,56 @@
                     {% endwith %}
                 {% endfor %}
             {% endslot %}
+            <!-- Action buttons for managing selected email address -->
             {% slot actions %}
-                {% element button type="submit" name="action_primary" %}
-                    {% trans 'Make Primary' %}
-                {% endelement %}
-                {% element button tags="secondary" type="submit" name="action_send" %}
-                    {% trans 'Re-send Verification' %}
-                {% endelement %}
-                {% element button tags="danger,delete" type="submit" name="action_remove" %}
-                    {% trans 'Remove' %}
-                {% endelement %}
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    <!-- Set selected email as primary -->
+                    {% element button type="submit" name="action_primary" %}
+                        {% trans 'Make Primary' %}
+                    {% endelement %}
+                    <!-- Re-send verification email for unverified addresses -->
+                    {% element button tags="secondary" type="submit" name="action_send" %}
+                        {% trans 'Re-send Verification' %}
+                    {% endelement %}
+                    <!-- Remove selected email address from account -->
+                    {% element button tags="danger,delete" type="submit" name="action_remove" %}
+                        {% trans 'Remove' %}
+                    {% endelement %}
+                </div>
             {% endslot %}
         {% endelement %}
     {% else %}
+        <!-- Warning if no emails are associated with account -->
         {% include "account/snippets/warn_no_email.html" %}
     {% endif %}
+    <!-- Add new email address section -->
     {% if can_add_email %}
-        {% element h2 %}
-            {% trans "Add Email Address" %}
-        {% endelement %}
+        <h5 class="mt-4">{% trans "Add Email Address" %}</h5>
         {% url 'account_email' as action_url %}
+        <!-- Form to add new email address to account -->
         {% element form form=form method="post" action=action_url tags="email,add" %}
             {% slot body %}
                 {% csrf_token %}
+                <!-- Email input field -->
                 {% element fields form=form %}
                 {% endelement %}
             {% endslot %}
+            <!-- Submit button to add email -->
             {% slot actions %}
-                {% element button name="action_add" type="submit" %}
-                    {% trans "Add Email" %}
-                {% endelement %}
+                <div class="d-grid mt-3">
+                    {% element button name="action_add" type="submit" %}
+                        {% trans "Add Email" %}
+                    {% endelement %}
+                </div>
             {% endslot %}
         {% endelement %}
     {% endif %}
-{% endblock content %}
+{% endblock content_inner %}
 {% block extra_body %}
+    <!-- Load JavaScript for email management functionality -->
     <script src="{% static 'account/js/account.js' %}"></script>
     <script src="{% static 'account/js/onload.js' %}"></script>
+    <!-- Configuration for delete confirmation dialog -->
     <script data-allauth-onload="allauth.account.forms.manageEmailForm" type="application/json">{
     "i18n": {"confirmDelete": "{% trans 'Do you really want to remove the selected email address?' %}"}
 }

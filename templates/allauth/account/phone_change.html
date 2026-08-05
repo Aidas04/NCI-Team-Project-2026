@@ -1,22 +1,28 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "account/base_manage_phone.html" %}
 {% load i18n %}
 {% load allauth %}
 {% block head_title %}
     {% trans "Change Phone" %}
 {% endblock head_title %}
-{% block content %}
-    {% element h1 %}
-        {% trans "Change Phone" %}
-    {% endelement %}
+{% block content_inner %}
+    <!-- Phone number change form title -->
+    <h3 class="fw-bold mb-4 text-center">{% trans "Change Phone" %}</h3>
     {% url 'account_change_phone' as action_url %}
+    <!-- Phone change form that requires authentication -->
     {% element form method="post" action=action_url %}
         {% slot body %}
             {% csrf_token %}
+            <!-- Display current phone number if set (disabled field for viewing only) -->
             {% if phone %}
                 {% element field id="current_phone" disabled=True type="tel" value=phone %}
                     {% slot label %}
                         {% translate "Current phone" %}:
                     {% endslot %}
+                    <!-- Show verification status and re-send verification button if not verified -->
                     {% if not phone_verified %}
                         {% slot help_text %}
                             {% blocktranslate %}Your phone number is still pending verification.{% endblocktranslate %}
@@ -34,9 +40,11 @@
             {% endelement %}
         {% endslot %}
         {% slot actions %}
-            {% element button name="action_add" type="submit" %}
-                {% translate "Change Phone" context "action" %}
-            {% endelement %}
+            <div class="d-grid mt-3">
+                {% element button name="action_add" type="submit" %}
+                    {% translate "Change Phone" context "action" %}
+                {% endelement %}
+            </div>
         {% endslot %}
     {% endelement %}
     {% if not phone_verified %}
@@ -48,4 +56,4 @@
             <input type="hidden" name="action" value="verify">
         </form>
     {% endif %}
-{% endblock content %}
+{% endblock content_inner %}

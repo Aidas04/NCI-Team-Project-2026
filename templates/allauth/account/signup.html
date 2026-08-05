@@ -1,30 +1,37 @@
+<!-- Edited by:
+ Ionut Ciobanu
+
+-->
 {% extends "account/base_entrance.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
-{% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
+{% block content_inner %}
+    <!-- Signup form title -->
+    <h1 class="auth-title text-center mb-3">{% trans "Sign Up" %}</h1>
     {% setvar link %}
         <a href="{{ login_url }}">
         {% endsetvar %}
         {% setvar end_link %}
         </a>
     {% endsetvar %}
+    <!-- Link to login page for existing users -->
     {% element p %}
         {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
     {% endelement %}
     {% if not SOCIALACCOUNT_ONLY %}
         {% url 'account_signup' as action_url %}
+        <!-- Signup form using CustomSignupForm with mandatory first_name, last_name, email fields -->
         {% element form form=form method="post" action=action_url tags="entrance,signup" %}
             {% slot body %}
                 {% csrf_token %}
+                <!-- Render all signup fields: first_name, last_name, username, email, password1, password2 -->
                 {% element fields form=form unlabeled=True %}
                 {% endelement %}
                 {{ redirect_field }}
             {% endslot %}
+            <!-- Submit button with Bootstrap styling -->
             {% slot actions %}
                 {% element button tags="prominent,signup" type="submit" %}
                     {% trans "Sign Up" %}
@@ -42,4 +49,4 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
-{% endblock content %}
+{% endblock content_inner %}
