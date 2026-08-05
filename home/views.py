@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 import stripe
 from django.conf import settings
 from django.db.models import Q
@@ -32,10 +33,15 @@ def events(request):
     for event in events:
         event.available_places = event.capacity - event.bookings.count()
 
+    # only show 6 events per page so the list doesnt get too long
+    paginator = Paginator(events, 6)
+    page_number = request.GET.get("page")
+    events_page = paginator.get_page(page_number)
+
     return render(
         request,
         "home/events.html",
-        {"events": events, "search_query": search_query})
+        {"events": events_page, "search_query": search_query})
 
 # Book event (Nerijus Kmitas x24170232)
 @login_required
