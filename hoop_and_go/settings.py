@@ -61,7 +61,6 @@ else:
 # security settings for production
 DEBUG = development
 
-
 # Email settings
 # In development, use the console backend so email actions do not require a running SMTP server.
 if development:
@@ -80,8 +79,9 @@ else:
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
-# Allow all hosts in development, restrict to specific host in production
+# Allow localhost and loopback addresses in development for testing
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# Configure CSRF protection to trust local connections
 CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1']
 CSRF_COOKIE_DOMAIN = None
 
@@ -125,6 +125,7 @@ INSTALLED_APPS = [
 
 ACCOUNT_FORMS = {
     "login": "forms.CustomLoginForm",
+    "signup": "forms.CustomSignupForm",
 }
 
 
@@ -155,6 +156,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # AllAuth Configuration
 # https://django-allauth.readthedocs.io/en/latest/
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}  # Allow login with username or email
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True

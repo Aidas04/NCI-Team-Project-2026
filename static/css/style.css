@@ -1,9 +1,270 @@
 
+/* Edited by:
+    Ionut Ciobanu
+    Aidas Kibas
+ */
+
 /* GLOBAL SETTINGS */
 
-/* hide the auto-generated password helptext link in allauth login form */
-.auth-card .helptext {
-    display: none !important;
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+
+/* Authentication Pages settings */
+.auth-page {
+  width: 100%;
+}
+
+.auth-card {
+  border: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f5fcfd 100%);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.auth-panel {
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f5fcfd 100%);
+}
+
+.auth-panel-manage {
+  max-width: 100%;
+}
+
+.auth-page h1,
+.auth-page h2,
+.auth-title {
+  color: #212529;
+  font-weight: 700;
+}
+
+.auth-page h1,
+.auth-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.auth-page h2 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.auth-page p {
+  color: #495057;
+  line-height: 1.6;
+}
+
+.auth-page form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.auth-page form > p,
+.auth-page .auth-field-row,
+.auth-page .auth-field {
+  margin: 0;
+}
+
+.auth-page label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #212529;
+  font-weight: 600;
+}
+
+.auth-page input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.auth-page textarea,
+.auth-page select {
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.auth-page input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):focus,
+.auth-page textarea:focus,
+.auth-page select:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.auth-page input[type="checkbox"],
+.auth-page input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.auth-page ul.errorlist {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  color: #dc3545;
+  font-size: 0.95rem;
+}
+
+.auth-page .helptext,
+.auth-page form > p > span {
+  display: block;
+  margin-top: 0.4rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.auth-page .helptext a {
+  display: none;
+}
+
+.auth-page button,
+.auth-page .btn,
+.auth-page .auth-provider-list a,
+.auth-page .auth-links a {
+  transition: all 0.15s ease-in-out;
+}
+
+.auth-page button,
+.auth-page a[href].btn-like,
+.auth-page form + a,
+.auth-page .auth-provider-list a {
+  text-decoration: none;
+}
+
+.auth-page button,
+.auth-page form button,
+.auth-page input[type="submit"] {
+  width: 30%;
+  place-self: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  background-color: #0d6efd;
+  color: #fff;
+  font-weight: 600;
+}
+
+.auth-page button:hover,
+.auth-page form button:hover,
+.auth-page input[type="submit"]:hover {
+  background-color: #0b5ed7;
+}
+
+.auth-page form > div:last-child,
+.auth-page .auth-action-group {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.auth-page ul {
+  padding-left: 1.2rem;
+}
+
+.auth-page hr {
+  margin: 1.5rem 0;
+}
+
+.auth-page table {
+  width: 100%;
+}
+
+.auth-page th,
+.auth-page td {
+  padding: 0.65rem 0.25rem;
+  vertical-align: top;
+}
+
+.auth-page .badge {
+  margin-left: 0.35rem;
+}
+
+.auth-page .auth-links a,
+.auth-page a {
+  color: #0d6efd;
+}
+
+.auth-page .auth-links a:hover,
+.auth-page a:hover {
+  color: #0a58ca;
+}
+
+.auth-page .auth-provider-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.auth-page .auth-provider-list li
+.auth-page ul.errorlist {
+    list-style: none;
+  margin: 0;
+  padding: 0;
+  color: #dc3545;
+  font-size: 0.95rem;
+}
+
+.auth-page .auth-provider-list a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #0d6efd;
+  border-radius: 999px;
+  background-color: #fff;
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.auth-page .auth-provider-list a:hover {
+  background-color: #e7f1ff;
+}
+
+
+/* Small Screen Settings */
+.auth-page .card-body > a,
+.auth-page .card-body > form + a {
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 999px) {
+    .auth-page .card-body {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .auth-page {
+        padding-top: 0.5rem;
+    }
+
+    .auth-panel,
+    .auth-card {
+        border-radius: 1rem;
+    }
+
+    .auth-page .card-body {
+        padding: 1.25rem;
+    }
+
+    .auth-page h1,
+    .auth-title {
+        font-size: 1.6rem;
+    }
+
+    .auth-page form {
+        gap: 0.85rem;
+    }
+
+    .auth-page button,
+    .auth-page form button,
+    .auth-page input[type="submit"] {
+        width: 50%;
+    }
 }
 
 /*Nav Bar CSS - Aidas Kibas*/
@@ -35,7 +296,8 @@
 }
 
 #i_div1 {
-    border: 2px solid black;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     padding: 10px;
     display: flex;
@@ -62,50 +324,57 @@
 }
 
 #i_div3 img{
-    width: 510px;
+    width: 450px;
+}
+
+/* Events Page CSS - Aidas Kibas*/
+
+#e_head {
+    color: rgb(20, 191, 221);
+    text-shadow: 1px 1px 1px #000000;
+    margin-top: 20px;
 }
 
 /* Manage Events Page CSS - Aidas Kibas*/
 
-#m_event_div1 {
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 15px;
-}
-
-#m_p1 {
-    margin-left: 10px;
-    font-weight: bold;
-    text-align: center;
-}
-
-#m_event_input {
-    margin-left: 10px;
-    margin-top: 10px;
-    text-align: center;
-    width: 300px;
-    height: 30px;
-}
-
-#m_display_box {
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 600px;
-    height: 350px;
-    margin: 10px auto;
-    padding: 10px;
-}
-
-#m_event_button {
-    color: black;
-    background-color: white;
-    border: 2px solid black;
-    margin-left: 550px;
+#m_head{
+    color: rgb(20, 191, 221);
+    text-shadow: 1px 1px 1px #000000;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
-#m_event_button:hover {
+#m_display{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-btn {
     color: white;
-    background-color: black;
+    background-color: rgb(199, 10, 10);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.cancel-btn:hover {
+    color: rgb(199, 10, 10);
+    background-color: white;
+    border: 1px solid rgb(199, 10, 10);
+}
+
+#remove-btn {
+    color: white;
+    background-color: rgb(199, 10, 10);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+#remove-btn:hover {
+    color: rgb(199, 10, 10);
+    background-color: white;
+    border: 1px solid rgb(199, 10, 10);
 }
