@@ -1,14 +1,35 @@
 <!-- Create Event page, only for organisers -->
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
-    <h2>Create a New Event</h2>
-    <p class="lead">Fill in the details below to set up a new basketball event.</p>
+<!-- reusing same styling as login/signup   -->
+<section class="auth-page py-4 py-md-5">
+    <div class="row justify-content-center mx-0">
+        <div class="col-10 col-sm-10 col-md-9 col-lg-6 col-xl-5">
+            <div class="card shadow-sm border-0 auth-panel">
+                <div class="card-body p-4 p-md-5">
+                    <h1 id="c_head" class="auth-title text-center mb-3">Create a New Event</h1>
+                    <p class="text-muted text-center mb-4">Fill in the details below, this is always a basketball event.</p>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Create Event</button>
-    </form>
-</div>
+                    <form method="POST" id="create-event-form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="h_btn w-100 mt-2">Create Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // stops the date picker itself from showing past dates
+    // backend still checks this too in clean_date, this is just for nicer UX
+    document.addEventListener("DOMContentLoaded", function () {
+        var dateInput = document.querySelector("#create-event-form input[type='date']");
+        if (dateInput) {
+            var today = new Date().toISOString().split("T")[0];
+            dateInput.setAttribute("min", today);
+        }
+    });
+</script>
 {% endblock %}

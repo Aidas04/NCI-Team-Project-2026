@@ -28,6 +28,8 @@ def create_event(request):
 
             event = form.save(commit=False)
             event.organiser = request.user
+            # always basketball for now, user never picks this
+            event.sport_type = "Basketball"
             event.save()
             messages.success(request, f"Event '{event.title}' created!")
             return redirect("events")
