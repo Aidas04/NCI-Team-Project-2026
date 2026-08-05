@@ -1,0 +1,16 @@
+<!-- confirm delete page, asks for password before actually deleting -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Delete Event: {{ event.title }}</h2>
+    <p class="text-danger">Are you sure you want to delete this event? This cannot be undone!</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="password">Confirm your password:</label>
+        <input type="password" name="password" id="password" class="form-control mb-3" required>
+        <button type="submit" class="btn btn-danger">Yes, Delete Event</button>
+        <a href="{% url 'events' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+!-- custom 404 page so it doesnt look like a broken django default page -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>Oops, page not found!</h1>
+    <p>The page you were looking for doesn't exist.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+</div>
+{% endblock %}

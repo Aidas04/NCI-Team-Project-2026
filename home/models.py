@@ -1,14 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Event(models.Model):
     organiser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     title = models.CharField(max_length=150)
-    sport_type = models.CharField(max_length=50)
+    # sport type always basketball for now, keeping field just in case we add other sports later
+    sport_type = models.CharField(max_length=50, default="Basketball")
     location = models.CharField(max_length=200)
     date = models.DateField()
     start_time = models.TimeField()
-    capacity = models.PositiveIntegerField()
+    # capping capacity so nobody can put in something crazy like 5000 players lol
+    capacity = models.PositiveIntegerField(validators=[MinValueValidator(2), MaxValueValidator(12)])
+    # MP adding price of the event, organiser sets this when creating event
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=10.00)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
