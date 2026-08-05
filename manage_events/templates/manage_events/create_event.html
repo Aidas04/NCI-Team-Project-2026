@@ -1,0 +1,14 @@
+<!-- Create Event page, only for organisers -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Create a New Event</h2>
+    <p class="lead">Fill in the details below to set up a new basketball event.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Event</button>
+    </form>
+</div>
+{% endblock %}
