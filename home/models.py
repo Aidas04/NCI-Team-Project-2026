@@ -9,6 +9,8 @@ class Event(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     capacity = models.PositiveIntegerField()
+    # MP adding price of the event, organiser sets this when creating event
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=10.00)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
