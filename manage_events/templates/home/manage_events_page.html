@@ -1,4 +1,4 @@
-<!-- Manage Events Page - Aidas Kibas -->
+<!-- Manage Events Page HTML - Aidas Kibas -->
 
 {% extends "base.html" %}
 {% block content %}
@@ -6,16 +6,19 @@
 
     <!-- This div structures the heading of the page and the text below it -->
 
-    <div class="container">
-        <h1 id="m_head">Manage Events</h1>
-        <p class="lead">Your booked events live here. Scroll through to view the details of a specific event!</p>
+    <div class="head_div et_pb_bottom_inside_divider">
+        <h1 class="page_head">Manage Events</h1>
+        <p class="lead-text">Your booked events live here. Scroll through to view the details of a specific event!</p>
+        <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
     </div>
+
+    <br>
 
     <!-- This div structures the display of the user's booked events -->
 
-    <div border="1" class="container mt-5 p-3">
+    <div border="1" class="container-fluid mt-5 p-3">
         <h3>My Bookings</h3>
-        <p class="lead">View and manage your bookings below.</p><br>
+        <p class="lead-text">View and manage your bookings below.</p><br>
         {% if request.user.is_authenticated %}
             <p class="lead">You are logged in as: <strong>{{ request.user.username }}</strong>.</p>
 
@@ -88,13 +91,6 @@
             </div>
 
     </div>
-
-     <!-- This div structures the footer of the page -->
-
-    <footer class="container-fluid bg-light py-3 mt-5">
-        <div class="text-center">
-            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
-        </div>
 
 {% endblock %}
  

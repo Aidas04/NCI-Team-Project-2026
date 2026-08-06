@@ -1,15 +1,21 @@
 <!-- Event Booking page (Nerijus Kmitas x24170232) -->
 
-{% extends "base.html" %} {% block content %}
-<div class="container mt-5">
-  <h2 id="e_head">Available Basketball Events</h2>
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+
+<div class="head_div">
+  <h1 class="page_head">Available Basketball Events</h1>
   <!-- simple search box for filtering by location -->
   <form method="GET" class="mb-4">
       <input type="text" name="location" placeholder="Search by location..." value="{{ search_query }}" class="form-control d-inline w-auto">
       <button type="submit" class="btn btn-outline-primary">Search</button>
   </form>
+  <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
+</div>
+<br>
   {% if events %} {% for event in events %}
-
+<div class="container-fluid">
   <div class="card mb-3 shadow-sm">
     <div class="card-body">
       <h3>{{ event.title }}</h3>

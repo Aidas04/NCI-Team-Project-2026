@@ -267,39 +267,117 @@
     }
 }
 
+/* General Classes for all pages - Aidas Kibas*/
+
+.body {
+    margin: 0;
+}
+
+.head_div {
+    background-color: rgb(20, 191, 221);
+    text-align: center;
+    width: 100%;
+}
+
+.head_design {
+    background-color: rgb(20, 191, 221);
+    text-align: center;
+    width: 100%;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='none' width='100%25' height='40px' viewBox='0 0 1280 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFFFFF'%3E%3Cpath d='M640 39L0 0v40h1280V0L640 39z'/%3E%3C/g%3E%3C/svg%3E");
+    transform: scale(1,1);
+    height: 40px;
+    z-index: 1;
+}
+
+.page_head {
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 1px #000000;
+    font-size: 60px;    
+    font-family: georgia, 'Times New Roman', Times, serif;
+    padding: 8px;
+}
+
+.lead-text {
+    color: rgb(0, 0, 0);
+    font-size: 20px;   
+    font-family: georgia, 'Times New Roman', Times, serif; 
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+.site_footer {
+    background-color: rgb(0, 0, 0);
+    color: rgb(20, 191, 221);
+    font-size: 16px;
+    font-family: georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
 /*Nav Bar CSS - Aidas Kibas*/
 
-#home-link {
-    background-color: rgb(254, 254, 254);
+.main-nav {
+    background-color: rgb(0, 0, 0);
+}
+
+#text-nav {
     color: rgb(20, 191, 221);
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
-    margin-right: 30px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+#nav-logo {
+    margin-right: 35px;
     padding: 8px;
     text-align: center;
 }
 
+#home-link {
+    background-color: rgb(0, 0, 0);
+    color: rgb(20, 191, 221);
+    font-size: 21px;
+    font-family: georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-right: 35px;
+    padding: 8px;
+    text-align: center;
+}
+
+#home-link:hover {
+    text-decoration: underline;
+    color: rgb(20, 191, 221);
+}
+
 #home-link-profile {
-    background-color: rgb(254, 254, 254);
+    background-color: rgb(0, 0, 0);
     color: rgb(20, 191, 221);
     font-size: 20px;
+    font-family: georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
     text-align: center;
 }
 
-/* Home Page CSS - Aidas Kibas*/
-
-#i_head {
+#home-link-profile:hover {
+    text-decoration: underline;
     color: rgb(20, 191, 221);
-    text-shadow: 1px 1px 1px #000000;
-    margin-top: 20px;
 }
+
+/* Home Page CSS - Aidas Kibas*/
 
 #i_div1 {
     border: 1px solid black;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
+    width: 70%;
     padding: 10px;
+    position: relative;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -324,24 +402,14 @@
 }
 
 #i_div3 img{
-    width: 450px;
+    width: 430px;
 }
 
 /* Events Page CSS - Aidas Kibas*/
 
-#e_head {
-    color: rgb(20, 191, 221);
-    text-shadow: 1px 1px 1px #000000;
-    margin-top: 20px;
-}
+
 
 /* Manage Events Page CSS - Aidas Kibas*/
-
-#m_head{
-    color: rgb(20, 191, 221);
-    text-shadow: 1px 1px 1px #000000;
-    margin-top: 20px;
-}
 
 #m_display{
     border: 1px solid black;
