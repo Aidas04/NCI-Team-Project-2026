@@ -1,9 +1,15 @@
+<!-- Home Page HTML - Aidas Kibas-->
+
+<!-- These are the elements that build the structure of the home page and allow for css and images -->
+
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-    <div class="container">
-        <h1 id="i_head">Welcome to Hoop and Go!</h1>
-        <p class="lead">Browse, Book, and Play! Show your skills off and meet new people with Hoop and Go!</p>
+
+    <div class="head_div et_pb_bottom_inside_divider">
+        <h1 class="page_head">Welcome to Hoop and Go!</h1>
+        <p class="lead-text">Browse, Book, and Play! Show your skills off and meet new people with Hoop and Go!</p>
+        <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
     </div>
 
     <br>
@@ -64,13 +70,5 @@
             </div>
 
     </div>
-
-    <!-- This div structures the footer of the page -->
-
-    <footer class="container-fluid bg-light py-3 mt-5">
-        <div class="text-center">
-            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
-        </div>
-
 
 {% endblock %}
