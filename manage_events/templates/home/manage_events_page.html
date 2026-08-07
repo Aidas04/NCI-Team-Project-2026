@@ -17,14 +17,18 @@
     <!-- This div structures the display of the user's booked events -->
 
     <div border="1" class="container-fluid mt-5 p-3">
-        <h3>My Bookings</h3>
+        <div id="info_text">
+        <h1>My Bookings</h1>
         <p class="lead-text">View and manage your bookings below.</p><br>
+        </div>
         {% if request.user.is_authenticated %}
-            <p class="lead">You are logged in as: <strong>{{ request.user.username }}</strong>.</p>
+            <div class="support_text">
+            <p>You are logged in as: <strong>{{ request.user.username }}</strong>.</p>
+            </div>
 
             {% if bookings %}
                 {% for booking in bookings %}
-                    <div id="m_display">
+                    <div class="m_display">
                         {% if booking.is_past %}
                             <p style="color: red;"><strong>Status:</strong> Past Event</p>
                             <p><strong>Event:</strong> {{ booking.event.title }}</p>
@@ -65,18 +69,21 @@
                     </div><br>
                 {% endfor %}
             {% else %}
+            <div id="no_bookings">
                 <p>No bookings found.</p>
+            </div>
             {% endif %}
         {% else %}
             <p>You are not logged in. Please log in to view your events.</p>
         {% endif %}
     </div>
 
-    <br><br>
-
-    <h3>View all Events:</h3>
+    <br><br><br>
+    <div class="support_text">
+        <p>Book Events:</p>
+    </div>  
     
-    <div id="i_div1">   
+    <div class="info_div">   
 
         <div id="i_div2">
             <h4>With Hoop and Go, you can easily browse and book a basketball event without the hassle of constant communication with a group of people!</h4>

@@ -7,16 +7,16 @@
 <div class="head_div">
   <h1 class="page_head">Available Basketball Events</h1>
   <!-- simple search box for filtering by location -->
-  <form method="GET" class="mb-4">
-      <input type="text" name="location" placeholder="Search by location..." value="{{ search_query }}" class="form-control d-inline w-auto">
-      <button type="submit" class="btn btn-outline-primary">Search</button>
+  <form id="search_form" method="GET" class="mb-4">
+      <input id="search_box" type="text" name="location" placeholder="Search by location..." value="{{ search_query }}" class="form-control d-inline w-auto">
+      <button id="search_btn" type="submit" class="btn btn-outline-primary">Search</button>
   </form>
   <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
 </div>
 <br>
   {% if events %} {% for event in events %}
 <div class="container-fluid">
-  <div class="card mb-3 shadow-sm">
+  <div class="event_card">
     <div class="card-body">
       <h3>{{ event.title }}</h3>
 
@@ -36,25 +36,24 @@
       <form method="POST" action="{% url 'book_event' event.id %}">
         {% csrf_token %}
 
-      <button class="btn-primary mt-2 d-inline-block text-decoration-none" type="submit">
-        Select Event</button>
+      <button class="select_btn" type="submit">Select Event</button>
         {% if request.user == event.organiser %}
         <a href="{% url 'delete_event' event.id %}" class="cancel-btn mt-2 d-inline-block text-decoration-none">Delete Event</a>
         {% endif %}
       </form>
     </div>
   </div>
-
+  <br>
   {% endfor %}
 
     <!-- pagination buttons -->
-  <div class="d-flex justify-content-center mt-4">
+  <div class="nav_btns d-flex justify-content-center mt-4">
       {% if events.has_previous %}
-          <a href="?page={{ events.previous_page_number }}&location={{ search_query }}" class="btn btn-outline-secondary me-2">Previous</a>
+          <a href="?page={{ events.previous_page_number }}&location={{ search_query }}" class="nxt_prev_btn">Previous</a>
       {% endif %}
       <span class="mx-2">Page {{ events.number }} of {{ events.paginator.num_pages }}</span>
       {% if events.has_next %}
-          <a href="?page={{ events.next_page_number }}&location={{ search_query }}" class="btn btn-outline-secondary ms-2">Next</a>
+          <a href="?page={{ events.next_page_number }}&location={{ search_query }}" class="nxt_prev_btn">Next</a>
       {% endif %}
   </div>
   
