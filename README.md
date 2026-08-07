@@ -187,6 +187,8 @@ docker compose exec web python manage.py test --keepdb
 - Bootstrap 5 (via django-crispy-forms)
 - GitHub (version control)
 - Jira (sprint planning and issue tracking)
+- Stripe (payment processing for paid events)
+- Render (live deployment and hosting)
 
 <br>
 
