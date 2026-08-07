@@ -14,11 +14,10 @@
 
     <br>
 
-    <div id="i_div1">   
+    <div class="info_div">   
 
         <div id="i_div2">
             <h4>With Hoop and Go, you can easily browse and book a basketball event without the hassle of constant communication with a group of people!</h4>
-
                 <a href="{% url 'events' %}">
                     <button class="h_btn">View Events</button>
                 </a>
@@ -32,7 +31,11 @@
 
     <br>
 
-    <div id="i_div1">   
+    <div class="info_div">   
+
+        <div id="i_div3">
+                <img src="{% static 'images/bball_hoop.webp' %}" alt="Basketball hoop">
+        </div>
 
         <div id="i_div2">
             <h4>Manage all of your booked events with ease! Hoop and Go provides simplicity in managing your bookings to ensure you never miss a game.</h4>
@@ -42,20 +45,18 @@
                 </a>
         </div>
 
-            <div id="i_div3">
-                <img src="{% static 'images/bball_hoop.webp' %}" alt="Basketball hoop">
-            </div>
+            
 
     </div>
 
     <br>
 
-    <div id="i_div1">   
+    <div class="info_div">   
 
         <div id="i_div2">
-            <h4>View and manage your account information. Let others know more about you! A world where people unite for basketball is a good world!</h4>
+            <h4>View and edit your account information. Let others know more about you! A world where people unite for basketball is a good world!</h4>
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'account_email' %}">
+                    <a href="{% url 'edit_profile' %}">
                         <button class="h_btn">View My Account</button>
                     </a>
                 {% else %}
