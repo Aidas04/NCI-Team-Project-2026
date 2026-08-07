@@ -1,6 +1,8 @@
 # Hoop & Go (NCI-AMNI-Team-Project-2026)
 
-run " docker compose up --build " to compose image and then use link http://localhost:8080/ to view website
+**Live site:** [https://hoop-and-go.onrender.com/](https://hoop-and-go.onrender.com/)
+
+run " docker compose up --build " to compose image and then use link http://localhost:8080/ to view website locally
 
 ## Introduction
 
