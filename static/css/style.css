@@ -269,24 +269,28 @@
 
 /* General Classes for all pages - Aidas Kibas*/
 
-.body {
-    margin: 0;
+html, body {
+    height: 100%;
+}
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/layered-waves-haikei.svg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+main{
+  flex: 1;
 }
 
 .head_div {
-    background-color: rgb(20, 191, 221);
     text-align: center;
     width: 100%;
-}
-
-.head_design {
-    background-color: rgb(20, 191, 221);
-    text-align: center;
-    width: 100%;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='none' width='100%25' height='40px' viewBox='0 0 1280 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFFFFF'%3E%3Cpath d='M640 39L0 0v40h1280V0L640 39z'/%3E%3C/g%3E%3C/svg%3E");
-    transform: scale(1,1);
-    height: 40px;
-    z-index: 1;
 }
 
 .page_head {
@@ -305,13 +309,44 @@
     margin-bottom: 20px;
 }
 
+.general_btn{
+  color: white;
+  background-color: rgb(0, 196, 255);
+  border: none;
+  border-radius: 15px;
+  font-size: 20px;
+  font-family: georgia, 'Times New Roman', Times, serif;
+  padding: 5px 10px;
+}
+
+.general_btn:hover{
+  color: white;
+  background-color: rgb(11, 122, 142);
+}
+
+.danger_btns{
+  color: white;
+  background-color: rgb(218, 17, 17);
+  border: none;
+  border-radius: 15px;
+  font-size: 20px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding: 5px 10px;
+}
+
+.danger_btns:hover{
+  color: white;
+  background-color: rgb(144, 5, 5);
+}
+
 .site_footer {
     background-color: rgb(0, 0, 0);
-    color: rgb(20, 191, 221);
+    color: rgb(0, 196, 255);
     font-size: 16px;
     font-family: georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
     padding: 10px;
+    margin-top: auto;
     margin-top: 20px;
     text-align: center;
     width: 100%;
@@ -324,7 +359,7 @@
 }
 
 #text-nav {
-    color: rgb(20, 191, 221);
+    color: rgb(0, 196, 255);
     font-size: 21px;
     font-weight: bold;
     padding: 10px;
@@ -340,7 +375,7 @@
 
 #home-link {
     background-color: rgb(0, 0, 0);
-    color: rgb(20, 191, 221);
+    color: rgb(0, 196, 255);
     font-size: 21px;
     font-family: georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
@@ -351,12 +386,12 @@
 
 #home-link:hover {
     text-decoration: underline;
-    color: rgb(20, 191, 221);
+    color: rgb(0, 196, 255);
 }
 
 #home-link-profile {
     background-color: rgb(0, 0, 0);
-    color: rgb(20, 191, 221);
+    color: rgb(0, 196, 255);
     font-size: 20px;
     font-family: georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
@@ -365,7 +400,7 @@
 
 #home-link-profile:hover {
     text-decoration: underline;
-    color: rgb(20, 191, 221);
+    color: rgb(0, 196, 255);
 }
 
 /* Home Page CSS - Aidas Kibas*/
@@ -384,7 +419,6 @@
 }
 
 #i_div2 {
-    background-color: rgb(212, 212, 212);
     color: rgb(0, 0, 0);
     font-size: 28px;
     font-family: georgia, 'Times New Roman', Times, serif;
@@ -401,7 +435,7 @@
 
 .h_btn {
     color: white;
-    background-color: rgb(20, 191, 221);
+    background-color: rgb(0, 196, 255);
     border: none;
     border-radius: 15px;
     font-size: 20px;
@@ -410,8 +444,8 @@
 }
 
 .h_btn:hover {
-    color: rgb(20, 191, 221);
-    background-color: white;
+    color: rgb(255, 255, 255);
+    background-color: rgb(17, 133, 172);
     border: none;
 }
 
@@ -419,6 +453,20 @@
   height: 575px;
   width: 430px;
   border-radius: 15px;
+}
+
+/* Login, SignIN, Reset Password CSS - Aidas Kibas */
+
+.non-main_divs{
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
 }
 
 /* Events Page CSS - Aidas Kibas*/
@@ -463,8 +511,8 @@
 
 .select_btn{
   color: white;
-  background-color: rgb(20, 191, 221);
-  border: 1px solid white;
+  background-color: rgb(0, 196, 255);
+  border: none;
   border-radius: 15px;
   font-size: 20px;
   font-family: georgia, 'Times New Roman', Times, serif;
@@ -472,9 +520,8 @@
 }
 
 .select_btn:hover{
-  color: rgb(20, 191, 221);
-  background-color: white;
-  border: 1px solid rgb(20, 191, 221);
+  color: rgb(255, 255, 255);
+  background-color: rgb(17, 133, 172);
 }
 
 .nav_btns{
@@ -484,8 +531,9 @@
 
 .nxt_prev_btn{
   color: white;
-  background-color: rgb(0, 0, 0);
-  border: 1px solid white;
+  background-color: rgb(142, 141, 141);
+  border: none;
+  text-decoration: none;
   border-radius: 15px;
   font-size: 20px;
   font-family: georgia, 'Times New Roman', Times, serif;
@@ -493,9 +541,8 @@
 }
 
 .nxt_prev_btn:hover{
-  color: rgb(0, 0, 0);
-  background-color: white;
-  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  background-color: rgb(73, 73, 73);
 }
 
 /* Manage Events Page CSS - Aidas Kibas*/
@@ -525,36 +572,6 @@
     margin: 0 auto;
 }
 
-.cancel-btn {
-    color: white;
-    background-color: rgb(199, 10, 10);
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 15px;
-    font-size: 20px;
-    padding: 5px 10px;
-}
-
-.cancel-btn:hover {
-    color: rgb(199, 10, 10);
-    background-color: white;
-    border: 1px solid rgb(199, 10, 10);
-}
-
-#remove-btn {
-    color: white;
-    background-color: rgb(199, 10, 10);
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 15px;
-    font-size: 20px;  
-    padding: 5px 10px;
-}
-
-#remove-btn:hover {
-    color: rgb(199, 10, 10);
-    background-color: white;
-    border: 1px solid rgb(199, 10, 10);
-}
-
 #no_bookings{
   border: none;
   border-radius: 15px;
@@ -566,4 +583,147 @@
   background-color: rgb(185, 6, 6);
   padding: 15px;
   width: 61%;
+}
+
+/* Vehicle Registration + Choice Pages CSS - Aidas Kibas*/
+
+#veh_choice_div{
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  font-family: georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+#vehicle_div{
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: georgia, 'Times New Roman', Times, serif;
+  width: 80%;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+#vehicle_btn{
+  color: white;
+  background-color: rgb(51, 174, 29);
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 8px 10px;
+}
+
+#vehicle_btn:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(14, 120, 11);
+}
+
+#no_vehicle_btn{
+  color: white;
+  background-color: rgb(199, 10, 10);
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 8px 10px;
+}
+
+#no_vehicle_btn:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(121, 12, 12);
+}
+
+#reg_veh_btn{
+  color: white;
+  background-color: rgb(0, 196, 255);
+  border: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+#reg_veh_btn:hover{
+  color: white;
+  background-color: rgb(11, 122, 142);
+}
+
+/* Create Event CSS - Aidas Kibas */
+
+#create_div{
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 50%;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+#create_btn{
+  color: white;
+  background-color: rgb(62, 207, 36);
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+#create_btn:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(16, 126, 12);
+}
+
+/* Delete Event CSS - Aidas Kibas */
+
+#delete_div{
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 55%;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+#cancel_btn{
+  color: white;
+  background-color: rgb(118, 118, 118);
+  border: none;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+#cancel_btn:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(59, 59, 59);
+}
+
+/* Edit Profile CSS - Aidas Kibas */
+
+#edit_div{
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 55%;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
 }

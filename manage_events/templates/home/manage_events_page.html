@@ -48,7 +48,7 @@
                         {% if booking.is_past %}
                         <form method="post" action="{% url 'remove_booking' booking.id %}">
                             {% csrf_token %}
-                            <button id="remove-btn">Remove Booking</button>
+                            <button class="danger_btns">Remove Booking</button>
                         </form>
                         {% else %}
                         {% if pending_booking and pending_booking.id == booking.id %}
@@ -56,13 +56,13 @@
                         {% csrf_token %}
                         <input type="hidden" name="booking_id" value="{{ booking.id }}">
                         <input type="hidden" name="confirm_refund" value="1">
-                        <button type="submit" class="cancel-btn">Confirm Cancelation</button>
+                        <button type="submit" class="danger_btns">Confirm Cancelation</button>
                         </form>
                         {% else %}
                         <form method="post" action="{% url 'cancel_booking' booking.id %}" class="d-inline">
                         {% csrf_token %}
                         <input type="hidden" name="booking_id" value="{{ booking.id }}">
-                        <button type="submit" class="cancel-btn">Request Cancelation</button><br>
+                        <button type="submit" class="danger_btns">Request Cancelation</button><br>
                         </form>
                         {% endif %}
                         {% endif %}

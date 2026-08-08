@@ -38,7 +38,7 @@
 
       <button class="select_btn" type="submit">Select Event</button>
         {% if request.user == event.organiser %}
-        <a href="{% url 'delete_event' event.id %}" class="cancel-btn mt-2 d-inline-block text-decoration-none">Delete Event</a>
+        <a href="{% url 'delete_event' event.id %}" class="danger_btns mt-2 d-inline-block text-decoration-none">Delete Event</a>
         {% endif %}
       </form>
     </div>

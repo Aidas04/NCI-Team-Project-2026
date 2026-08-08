@@ -1,7 +1,18 @@
 <!-- simple profile page so people can update their name -->
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
+
+<!-- This div structures the heading of the page and the text below it -->
+
+    <div class="head_div et_pb_bottom_inside_divider">
+        <h1 class="page_head">Edit Profile</h1>
+        <p class="lead-text">View and Change your profile details here!</p>
+        <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
+    </div>
+
+    <br>
+
+<div id="edit_div">
     <h2>My Details</h2>
 
     <form method="POST">
@@ -12,9 +23,9 @@
         <label>Last name</label>
         <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control mb-3">
 
-        <p class="text-muted">Want to change your email or password? <a href="{% url 'account_email' %}">Go here</a>.</p>
+        <p class="text-muted">Want to change your email or password? <a href="{% url 'account_email' %}">Click here</a>.</p>
 
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit" class="general_btn">Save Changes</button>
     </form>
 
     {% if user.vehicle %}
@@ -24,4 +35,5 @@
         <p>Make/Model: {{ user.vehicle.make }} {{ user.vehicle.model }}</p>
     {% endif %}
 </div>
+
 {% endblock %}
