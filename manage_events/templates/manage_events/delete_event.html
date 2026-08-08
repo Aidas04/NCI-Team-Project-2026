@@ -1,16 +1,30 @@
 <!-- confirm delete page, asks for password before actually deleting -->
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
+
+<!-- This div structures the heading of the page and the text below it -->
+
+    <div class="head_div et_pb_bottom_inside_divider">
+        <h1 class="page_head">Delete Event</h1>
+        <p class="lead-text">As an event organiser, You can delete events from the system completely!</p>
+        <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
+    </div>
+
+    <br>
+
+<div id="delete_div">
     <h2>Delete Event: {{ event.title }}</h2>
     <p class="text-danger">Are you sure you want to delete this event? This cannot be undone!</p>
 
     <form method="POST">
         {% csrf_token %}
         <label for="password">Confirm your password:</label>
-        <input type="password" name="password" id="password" class="form-control mb-3" required>
-        <button type="submit" class="btn btn-danger">Yes, Delete Event</button>
-        <a href="{% url 'events' %}" class="btn btn-secondary">Cancel</a>
+        <input type="password" name="password" id="password" class="form-control mb-3" placeholder="Enter Password..." required>
+        <button type="submit" class="danger_btns">Yes, Delete Event</button>
+        
     </form>
+    <br>
+    <a href="{% url 'events' %}"><button id="cancel_btn">Cancel</button></a>
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

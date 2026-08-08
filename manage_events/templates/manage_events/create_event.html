@@ -1,23 +1,28 @@
 <!-- Create Event page, only for organisers -->
 {% extends "base.html" %}
 {% block content %}
+
+<!-- This div structures the heading of the page and the text below it -->
+
+    <div class="head_div et_pb_bottom_inside_divider">
+        <h1 class="page_head">Create Event</h1>
+        <p class="lead-text">As an event organiser, You can create events for Hoop and Go users to browse and book!</p>
+        <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
+    </div>
+
+    <br>
+
 <!-- reusing same styling as login/signup   -->
 <section class="auth-page py-4 py-md-5">
-    <div class="row justify-content-center mx-0">
-        <div class="col-10 col-sm-10 col-md-9 col-lg-6 col-xl-5">
-            <div class="card shadow-sm border-0 auth-panel">
-                <div class="card-body p-4 p-md-5">
-                    <h1 id="c_head" class="auth-title text-center mb-3">Create a New Event</h1>
-                    <p class="text-muted text-center mb-4">Fill in the details below, this is always a basketball event.</p>
+    <div id="create_div">
+        <h1 id="c_head" class="auth-title text-center mb-3">Create a New Event</h1>
+            <p class="text-muted text-center mb-4">Fill in the details below, this is always a basketball event.</p>
 
-                    <form method="POST" id="create-event-form">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="h_btn w-100 mt-2">Create Event</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                <form method="POST" id="create-event-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" id="create_btn">Create Event</button>
+                </form>
     </div>
 </section>
 
