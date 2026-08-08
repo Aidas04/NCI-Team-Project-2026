@@ -14,18 +14,15 @@
         </p>
         
         <div>
-            <a href="{% url 'vehicle_registration' %}?event_id={{ event_id }}"
-                id="vehicle_btn">
+            <a id="vehicle_btn" href="{% url 'vehicle_registration' %}?event_id={{ event_id }}">
                 Yes, register my vehicle
             </a>
-            <a href="{% url 'continue_booking' event_id %}"
-                id="no_vehicle_btn">
+            <a id="no_vehicle_btn" href="{% url 'continue_booking' event_id %}">
                 No, continue without vehicle
             </a>
         </div>
         <br>
     </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 {% endblock %}

@@ -224,47 +224,40 @@
 }
 
 
-/* Small Screen Settings */
-.auth-page .card-body > a,
-.auth-page .card-body > form + a {
-    display: inline-block;
-    margin-top: 0.5rem;
-}
+/* Small Screen CSS - Aidas Kibas */
 
-@media (max-width: 999px) {
-    .auth-page .card-body {
-        padding: 1.5rem;
-    }
-}
+@media (max-width: 1000px) {
 
-@media (max-width: 575px) {
-    .auth-page {
-        padding-top: 0.5rem;
-    }
+  
 
-    .auth-panel,
-    .auth-card {
-        border-radius: 1rem;
-    }
+   .info_div {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+   }
 
-    .auth-page .card-body {
-        padding: 1.25rem;
-    }
+   #i_div2{
+      width: 100%;
+      height: auto;
+   }
 
-    .auth-page h1,
-    .auth-title {
-        font-size: 1.6rem;
-    }
+   #i_div3 {
+      display: none;
+   }
 
-    .auth-page form {
-        gap: 0.85rem;
-    }
+   #text-nav{
+     display: none;
+   }
 
-    .auth-page button,
-    .auth-page form button,
-    .auth-page input[type="submit"] {
-        width: 50%;
-    }
+   #vehicle_btn{
+    width: 40%;
+   }
+
+   #no_vehicle_btn{
+    width: 40%;
+   }
+   
+
 }
 
 /* General Classes for all pages - Aidas Kibas*/
@@ -615,6 +608,7 @@ main{
 }
 
 #vehicle_btn{
+  display: inline-block;
   color: white;
   background-color: rgb(51, 174, 29);
   text-decoration: none;
@@ -629,6 +623,7 @@ main{
 }
 
 #no_vehicle_btn{
+  display: inline-block;
   color: white;
   background-color: rgb(199, 10, 10);
   text-decoration: none;
