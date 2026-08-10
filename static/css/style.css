@@ -224,157 +224,519 @@
 }
 
 
-/* Small Screen Settings */
-.auth-page .card-body > a,
-.auth-page .card-body > form + a {
-    display: inline-block;
-    margin-top: 0.5rem;
+/* Small Screen CSS - Aidas Kibas */
+
+/* The contents below 1000px will be styled here */
+
+@media (max-width: 1000px) {
+
+   .info_div {
+      flex-direction: column; /* under 1000px, the info div will be in a column */
+      width: 100%; /* under 1000px the info div will be 100% width of the screen */
+      height: auto; /* under 1000px the info divs height will automatically adjust to the height of the screen */
+   }
+
+   #i_div2{
+      width: 100%;
+      height: auto;
+   }
+
+   #i_div3 {
+      display: none; /* under 1000px the i_div3 will not display anything */
+   }
+
+   #text-nav{
+     display: none; /* under 1000px the text-nav will not display anything */
+   }
+
+   #vehicle_btn{
+    width: 40%; /* under 1000px the vehicle_btn will be 40% width of the screen */
+   }
+
+   #no_vehicle_btn{
+    width: 40%; /* under 1000px the no_vehicle_btn will be 40% width of the screen */
+   }
+   
+   /* The rest of the pages automatically fit any screen size */
+
 }
 
-@media (max-width: 999px) {
-    .auth-page .card-body {
-        padding: 1.5rem;
-    }
+/* General Classes for all pages - Aidas Kibas*/
+
+html, body {
+    height: 100%; /* The height of the html and body is 100% the height of the screen */
 }
 
-@media (max-width: 575px) {
-    .auth-page {
-        padding-top: 0.5rem;
-    }
+body{
+  margin: 0; /* Margins allow me to control how much margin content has from the edge of a screen */
+  min-height: 100vh; /* Setting the minimun height of the page bodies */
+  display: flex; /* The flex display allows me to alter the spacing and alignment of content */
+  flex-direction: column; /* Items are placed in a flex container in a column direction - Bootstrap */
+  background-image: url("../images/layered-waves-haikei.svg"); /* the body has a background image created by Aidas Kibas using Haikei */
+  background-size: cover; /* Ensuring the background image fits the whole screen */
+  background-position: center; /* Ensuring the background image position is centered */
+  background-attachment: fixed; /* Ensuring the background image does not move with the scroll wheel */
+}
 
-    .auth-panel,
-    .auth-card {
-        border-radius: 1rem;
-    }
+main{
+  flex: 1; /* Flex specifies the how much space within a container an element should take up */
+}
 
-    .auth-page .card-body {
-        padding: 1.25rem;
-    }
+.head_div {
+    text-align: center; /* Aligns text in the center of a div/section */
+}
 
-    .auth-page h1,
-    .auth-title {
-        font-size: 1.6rem;
-    }
+.page_head {
+    color: rgb(0, 0, 0); /* Color represents the colour of text in a div/section */
+    text-shadow: 1px 1px 1px #000000; /* Text shadow adds a shadow behind text based on pixel choice */
+    font-size: 60px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    padding: 10px; /* Padding adds padding between content and the edge of a div */
+}
 
-    .auth-page form {
-        gap: 0.85rem;
-    }
+.lead-text {
+    color: rgb(0, 0, 0); /* Color represents the colour of text in a div/section */
+    font-size: 20px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */ 
+    padding: 8px; /* Padding adds padding between content and the edge of a div */
+    margin-bottom: 20px; /* Margins allow me to control how much margin content has from the edge of a screen */
+}
 
-    .auth-page button,
-    .auth-page form button,
-    .auth-page input[type="submit"] {
-        width: 50%;
-    }
+.general_btn{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(0, 196, 255); /* This allows me to alter the background colour of a div/button/section */
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+.general_btn:hover{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(11, 122, 142); /* This allows me to alter the background colour of a div/button/section */
+}
+
+.danger_btns{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(218, 17, 17); /* This allows me to alter the background colour of a div/button/section */
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  font-family:Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+.danger_btns:hover{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(144, 5, 5); /* This allows me to alter the background colour of a div/button/section */
+}
+
+.site_footer {
+    background-color: rgb(0, 0, 0); /* This allows me to alter the background colour of a div/button/section */
+    color: rgb(0, 196, 255); /* Color represents the colour of text in a div/section */
+    font-size: 16px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    font-weight: bold; /* This changes the fonts weight to bold */
+    padding: 10px; /* Padding adds padding between content and the edge of a div */
+    margin-top: auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+    margin-top: 20px; /* Margins allow me to control how much margin content has from the edge of a screen */
+    text-align: center; /* Aligns text in the center of a div/section */
+    width: 100%; /* Adjusting the width of the element by the div/screen size */
 }
 
 /*Nav Bar CSS - Aidas Kibas*/
 
+.main-nav {
+    background-color: rgb(0, 0, 0); /* This allows me to alter the background colour of a div/button/section */
+}
+
+#text-nav {
+    font-size: 21px; /* Font-size lets me alter the size of text */
+    font-weight: bold; /* This changes the fonts weight to bold */
+    padding: 10px; /* Padding adds padding between content and the edge of a div */
+    text-align: center; /* Aligns text in the center of a div/section */
+    width: 100%; /* Adjusting the width of the element by the div/screen size */
+}
+
+#nav-logo {
+    margin-right: 35px; /* Margins allow me to control how much margin content has from the edge of a screen */
+    padding: 8px; /* Padding adds padding between content and the edge of a div */
+}
+
 #home-link {
-    background-color: rgb(254, 254, 254);
-    color: rgb(20, 191, 221);
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 30px;
-    padding: 8px;
-    text-align: center;
+    color: rgb(0, 196, 255); /* Color represents the colour of text in a div/section */
+    font-size: 21px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    font-weight: bold; /* This changes the fonts weight to bold */
+    margin-right: 35px; /* Margins allow me to control how much margin content has from the edge of a screen */
+    padding: 8px; /* Padding adds padding between content and the edge of a div */
+    text-align: center; /* Aligns text in the center of a div/section */
+}
+
+/* :hover showcases the styling when a user hovers over a word */
+
+#home-link:hover {
+    text-decoration: underline; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
 }
 
 #home-link-profile {
-    background-color: rgb(254, 254, 254);
-    color: rgb(20, 191, 221);
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
+    color: rgb(0, 196, 255); /* Color represents the colour of text in a div/section */
+    font-size: 20px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    font-weight: bold; /* This changes the fonts weight to bold */
+    text-align: center; /* Aligns text in the center of a div/section */
+}
+
+/* :hover showcases the styling when a user hovers over a word */
+
+#home-link-profile:hover {
+    text-decoration: underline; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
 }
 
 /* Home Page CSS - Aidas Kibas*/
 
-#i_head {
-    color: rgb(20, 191, 221);
-    text-shadow: 1px 1px 1px #000000;
-    margin-top: 20px;
-}
-
-#i_div1 {
-    border: 1px solid black;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.info_div {
+    border: none; /* Ensuring there is no visible border on the div */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+    border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+    width: 60%; /* Adjusting the width of the element by the div/screen size */
+    padding: 8px; /* Padding adds padding between content and the edge of a div */
+    position: relative; /* This keeps the div/content in its relative/normal position */
+    margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+    display: flex; /* The flex display allows me to alter the spacing and alignment of content */
+    align-items: center; /* This aligns content to the center of a div/section */
+    justify-content: space-between; 
 }
 
 #i_div2 {
-    margin-top: 20px;
+    color: rgb(0, 0, 0); /* Color represents the colour of text in a div/section */
+    font-size: 28px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    text-align: center; /* Aligns text in the center of a div/section */
+    padding: 12px; /* Padding adds padding between content and the edge of a div */
+    border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+    width: 70%; /* Adjusting the width of the element by the div/screen size */
+    height: 575px; /* This alters the height of a div/content */ 
+    display: flex; /* The flex display allows me to alter the spacing and alignment of content */
+    flex-direction: column; /* Setting the flex containers main direction as column */
+    align-items: center; /* This aligns content to the center of a div/section */
+    justify-content: center; /* Align items against the main axis of a flex container */
 }
 
 .h_btn {
-    color: white;
-    background-color: rgb(20, 191, 221);
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 10px;
-    padding: 5px 10px;
+    color: white; /* Color represents the colour of text in a div/section */
+    background-color: rgb(0, 196, 255); /* This allows me to alter the background colour of a div/button/section */
+    border: none; /* Ensuring there is no visible border on the div */
+    border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+    font-size: 20px; /* Font-size lets me alter the size of text */
+    font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
 }
 
+/* :hover showcases the styling when a user hovers over a button */
+
 .h_btn:hover {
-    color: rgb(20, 191, 221);
-    background-color: white;
-    border: 1px solid rgb(20, 191, 221);
+    color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+    background-color: rgb(17, 133, 172); /* This allows me to alter the background colour of a div/button/section */
+    border: none; /* Ensuring there is no visible border on the div */
 }
 
 #i_div3 img{
-    width: 450px;
+  height: 575px; /* This alters the height of a div/content */
+  width: 430px; /* Adjusting the width of the element by the div/screen size */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+}
+
+/* Login, SignIN, Reset Password CSS - Aidas Kibas */
+
+.non-main_divs{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  padding: 8px; /* Padding adds padding between content and the edge of a div */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  width: 100%; /* Adjusting the width of the element by the div/screen size */
+  font-family:Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  align-items: center; /* This aligns content to the center of a div/section */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
 }
 
 /* Events Page CSS - Aidas Kibas*/
 
-#e_head {
-    color: rgb(20, 191, 221);
-    text-shadow: 1px 1px 1px #000000;
-    margin-top: 20px;
+#search_form{
+  align-items: center; /* This aligns content to the center of a div/section */
+  display: flex; /* The flex display allows me to alter the spacing and alignment of content */
+  justify-content: center; /* Align items against the main axis of a flex container */
+}
+
+#search_box{
+  border: 1px solid black; /* Here i decorate the border of a div/button with a colour and pixelation */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+}
+
+#search_btn{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  background-color: rgb(51, 209, 51); /* This allows me to alter the background colour of a div/button/section */
+  color: black; /* Color represents the colour of text in a div/section */
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+#search_btn:hover{
+  background-color: rgb(32, 169, 32); /* This allows me to alter the background colour of a div/button/section */
+}
+
+.event_card{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  font-size: 22px; /* Font-size lets me alter the size of text */
+  width: 61%; /* Adjusting the width of the element by the div/screen size */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+}
+
+.select_btn{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(0, 196, 255); /* This allows me to alter the background colour of a div/button/section */
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+.select_btn:hover{
+  color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+  background-color: rgb(17, 133, 172); /* This allows me to alter the background colour of a div/button/section */
+}
+
+.nav_btns{
+  align-items: center; /* This aligns content to the center of a div/section */
+}
+
+.nxt_prev_btn{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(142, 141, 141); /* This allows me to alter the background colour of a div/button/section */
+  border: none; /* Ensuring there is no visible border on the div */
+  text-decoration: none; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+.nxt_prev_btn:hover{
+  color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+  background-color: rgb(73, 73, 73); /* This allows me to alter the background colour of a div/button/section */
 }
 
 /* Manage Events Page CSS - Aidas Kibas*/
 
-#m_head{
-    color: rgb(20, 191, 221);
-    text-shadow: 1px 1px 1px #000000;
-    margin-top: 20px;
+#info_text{
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  text-align: center; /* Aligns text in the center of a div/section */
 }
 
-#m_display{
-    border: 1px solid black;
-    border-radius: 15px;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+.support_text{
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  text-align: center; /* Aligns text in the center of a div/section */
+  font-size: 25px; /* Font-size lets me alter the size of text */
+  text-decoration: underline; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
 }
 
-.cancel-btn {
-    color: white;
-    background-color: rgb(199, 10, 10);
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 15px;
-    padding: 5px 10px;
+.m_display{
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+    font-size: 22px; /* Font-size lets me alter the size of text */
+    border: none; /* Ensuring there is no visible border on the div */
+    border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+    padding: 8px; /* Padding adds padding between content and the edge of a div */
+    margin-bottom: 10px; /* Margins allow me to control how much margin content has from the edge of a screen */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+    width: 61%; /* Adjusting the width of the element by the div/screen size */
+    position: relative; /* This keeps the div/content in its relative/normal position */
+    margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
 }
 
-.cancel-btn:hover {
-    color: rgb(199, 10, 10);
-    background-color: white;
-    border: 1px solid rgb(199, 10, 10);
+#no_bookings{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  text-align: center; /* Aligns text in the center of a div/section */
+  font-size: 25px; /* Font-size lets me alter the size of text */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+  background-color: rgb(185, 6, 6); /* This allows me to alter the background colour of a div/button/section */
+  padding: 15px; /* Padding adds padding between content and the edge of a div */
+  width: 61%; /* Adjusting the width of the element by the div/screen size */
 }
 
-#remove-btn {
-    color: white;
-    background-color: rgb(199, 10, 10);
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 15px;
-    padding: 5px 10px;
+/* Vehicle Registration + Choice Pages CSS - Aidas Kibas*/
+
+#veh_choice_div{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  padding: 8px; /* Padding adds padding between content and the edge of a div */
+  margin-bottom: 10px; /* Margins allow me to control how much margin content has from the edge of a screen */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  width: 80%; /* Adjusting the width of the element by the div/screen size */
+  font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  text-align: center; /* Aligns text in the center of a div/section */
+  align-items: center; /* This aligns content to the center of a div/section */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
 }
 
-#remove-btn:hover {
-    color: rgb(199, 10, 10);
-    background-color: white;
-    border: 1px solid rgb(199, 10, 10);
+#vehicle_div{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  padding: 8px; /* Padding adds padding between content and the edge of a div */
+  margin-bottom: 10px; /* Margins allow me to control how much margin content has from the edge of a screen */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  font-family: georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  width: 80%; /* Adjusting the width of the element by the div/screen size */
+  align-items: center; /* This aligns content to the center of a div/section */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+}
+
+#vehicle_btn{
+  display: inline-block; /* The flex display allows me to alter the spacing and alignment of content */
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(51, 174, 29); /* This allows me to alter the background colour of a div/button/section */
+  text-decoration: none; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  padding: 8px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+#vehicle_btn:hover{
+  color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+  background-color: rgb(14, 120, 11); /* This allows me to alter the background colour of a div/button/section */
+}
+
+#no_vehicle_btn{
+  display: inline-block; /* The flex display allows me to alter the spacing and alignment of content */
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(199, 10, 10); /* This allows me to alter the background colour of a div/button/section */
+  text-decoration: none; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  padding: 8px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+#no_vehicle_btn:hover{
+  color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+  background-color: rgb(121, 12, 12); /* This allows me to alter the background colour of a div/button/section */
+}
+
+#reg_veh_btn{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(0, 196, 255); /* This allows me to alter the background colour of a div/button/section */
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+#reg_veh_btn:hover{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(11, 122, 142); /* This allows me to alter the background colour of a div/button/section */
+}
+
+/* Create Event CSS - Aidas Kibas */
+
+#create_div{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  padding: 8px; /* Padding adds padding between content and the edge of a div */
+  margin-bottom: 10px; /* Margins allow me to control how much margin content has from the edge of a screen */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  width: 50%; /* Adjusting the width of the element by the div/screen size */
+  font-family:Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  align-items: center; /* This aligns content to the center of a div/section */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+}
+
+#create_btn{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(62, 207, 36); /* This allows me to alter the background colour of a div/button/section */
+  text-decoration: none; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+#create_btn:hover{
+  color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+  background-color: rgb(16, 126, 12); /* This allows me to alter the background colour of a div/button/section */
+}
+
+/* Delete Event CSS - Aidas Kibas */
+
+#delete_div{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  padding: 8px; /* Padding adds padding between content and the edge of a div */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  width: 55%; /* Adjusting the width of the element by the div/screen size */
+  font-family:Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  text-align: center; /* Aligns text in the center of a div/section */
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
+}
+
+#cancel_btn{
+  color: white; /* Color represents the colour of text in a div/section */
+  background-color: rgb(118, 118, 118); /* This allows me to alter the background colour of a div/button/section */
+  border: none; /* Ensuring there is no visible border on the div */
+  text-decoration: none; /* This allows me to change the decoration of a text. I.e. bold, italic, none... */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  font-size: 20px; /* Font-size lets me alter the size of text */
+  padding: 5px 10px; /* Padding adds padding between content and the edge of a div */
+}
+
+/* :hover showcases the styling when a user hovers over a button */
+
+#cancel_btn:hover{
+  color: rgb(255, 255, 255); /* Color represents the colour of text in a div/section */
+  background-color: rgb(59, 59, 59); /* This allows me to alter the background colour of a div/button/section */
+}
+
+/* Edit Profile CSS - Aidas Kibas */
+
+#edit_div{
+  border: none; /* Ensuring there is no visible border on the div */
+  border-radius: 15px; /* Border radius creates rounded corners on a div */ 
+  padding: 8px; /* Padding adds padding between content and the edge of a div */ 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow adds a shadow behind a div based on pixel sizes */
+  width: 55%; /* Adjusting the width of the element by the div/screen size */
+  font-family:Georgia, 'Times New Roman', Times, serif; /* Font-family lets me alter the font style of text */
+  align-items: center; /* This aligns content to the center of a div/section */ 
+  position: relative; /* This keeps the div/content in its relative/normal position */
+  margin: 0 auto; /* Margins allow me to control how much margin content has from the edge of a screen */
 }

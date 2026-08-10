@@ -1,10 +1,12 @@
 # Hoop & Go (NCI-AMNI-Team-Project-2026)
 
-run " docker compose up --build " to compose image and then use link http://localhost:8080/ to view website
+**Live site:** [https://hoop-and-go.onrender.com/](https://hoop-and-go.onrender.com/)
+
+run " docker compose up --build " to compose image and then use link http://localhost:8080/ to view website locally
 
 ## Introduction
 
-This project is a sports gathering platform built to help basketball players find and join 5-a-side games nearby. The website is for users who want to easily discover, join, and manage basketball event bookings without the hassle of organising games manually.
+This project is a sports gathering platform built to help basketball players find and join 2,3,4,5,6-a-side games nearby. The website is for users who want to easily discover, join, and manage basketball event bookings without the hassle of organising games manually.
 
 The website is built using the Django framework, containerised with Docker, hosted on a free-tier PostgreSQL database (Neon), and follows an agile methodology approach for development using Jira for sprint tracking.
 
@@ -70,6 +72,7 @@ The website is built using the Django framework, containerised with Docker, host
 | 2. | I want to delete an event I created if it's no longer happening. |
 | 3. | I want my create/delete actions to be protected by my password so no other user can alter my events. |
 | 4. | I want to see confirmation once my event is successfully created or deleted. |
+| 5. | I want to pick from a fixed list of tournament formats and Dublin locations so listings stay consistent and accurate. |
 
 <br>
 
@@ -116,7 +119,7 @@ The core functional requirements are represented by 8 use cases: Login, Register
 
 ### Database Schema
 
-The core entities are User, Event, Booking, and Payment (future feature), linked as follows: a User can organise many Events, a User can make many Bookings, an Event can have many Bookings, and a Booking may generate one Payment.
+The core entities are User, Event, Booking, and Payment, linked as follows: a User can organise many Events, a User can make many Bookings, an Event can have many Bookings, and a Booking generates one Payment once checkout is completed via Stripe. Events also store a price, which is used directly when creating the Stripe checkout session.
 
 <br>
 
@@ -131,16 +134,36 @@ The core entities are User, Event, Booking, and Payment (future feature), linked
 - Edit personal account details
 - Organiser-only event creation and deletion, password-protected
 - **Stripe payment integration** for paid events, allowing organisers to charge entry fees and users to pay securely at checkout.
-- "Every 10th event free" loyalty incentive once payments are introduced.
+- **Search events by location**, with results paginated 6 per page.
+- **Create Event page**, restricted to logged-in users, with a fixed list of tournament formats (1v1–6v6) and 15 preset Dublin locations to choose from.
+- **Delete Event page**, only visible to the event's organiser, protected by password confirmation.
+- Event capacity capped between 2 and 12 players, and event date cannot be set in the past.
+- **Refund attempt on booking cancellation** if the booking was already paid via Stripe.
+- Editable event price per event, used directly in the Stripe checkout amount.
+- Profile page to view/edit first and last name, and see your registered vehicle.
+- Custom 404 and 500 error pages.
+
 
 <br>
 
 ## Future Features
 
+- Support additional sports beyond basketball.
+- Add email notifications for booking confirmations and cancellations.
+- Add an admin dashboard for organisers to see booking stats per event.
+- "Every 10th event free" loyalty feature.
+
+<br>
+
+## Known Limitations
+
+- Sport type is currently locked to Basketball only; the field exists in the model for future expansion to other sports.
+- Refunds on cancellation are attempted automatically via Stripe, but if the Stripe API call fails, the booking is still cancelled and a warning message is shown asking the user to follow up manually.
+
 <br>
 
 ## Testing 
-<br>
+
 
 Automated unit tests cover:
 - Event listing (past events are correctly hidden)
@@ -152,6 +175,7 @@ Run all tests with:
 ```bash
 docker compose exec web python manage.py test --keepdb
 ```
+<br>
 
 ## Technologies Used
 
@@ -163,6 +187,8 @@ docker compose exec web python manage.py test --keepdb
 - Bootstrap 5 (via django-crispy-forms)
 - GitHub (version control)
 - Jira (sprint planning and issue tracking)
+- Stripe (payment processing for paid events)
+- Render (live deployment and hosting)
 
 <br>
 
@@ -175,6 +201,8 @@ docker compose exec web python manage.py test --keepdb
 - psycopg2-binary
 - python-decouple
 - gunicorn
+- whitenoise
+- stripe
 
 <br>
 

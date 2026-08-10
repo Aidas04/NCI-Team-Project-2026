@@ -1,22 +1,45 @@
+<!-- Home Page HTML - Aidas Kibas-->
+
+<!-- Classes are assigned to elements with same styling, and ID's are assigned to elements with unique styling -->
+
+<!-- These are the elements that build the structure of the home page and allow for css and images -->
+
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
-    <div class="container">
-        <h1 id="i_head">Welcome to Hoop and Go!</h1>
-        <p class="lead">Browse, Book, and Play! Show your skills off and meet new people with Hoop and Go!</p>
+
+    <!-- This div structures the header of the web page. Showcasing the head text and lead text after -->
+
+    <div class="head_div">
+
+        <!-- Head text displaying the page name -->
+
+        <h1 class="page_head">Welcome to Hoop and Go!</h1> 
+
+        <!-- This text leads directly after the head text, explaining the website purpose -->
+
+        <p class="lead-text">Browse, Book, and Play! Show your skills off and meet new people with Hoop and Go!</p>
+
     </div>
+
+    <!-- Break in a page, creating a small blank space between divs -->
 
     <br>
 
-    <div id="i_div1">   
+    <!-- This div contains informative text, url linked buttons, and images -->
+
+    <div class="info_div">   
+
+        <!-- This is a nested div which has informative text and a button linking to the view events page -->
 
         <div id="i_div2">
             <h4>With Hoop and Go, you can easily browse and book a basketball event without the hassle of constant communication with a group of people!</h4>
-
                 <a href="{% url 'events' %}">
                     <button class="h_btn">View Events</button>
                 </a>
         </div>
+
+            <!-- This other nested div is for an image in our images folder - Royalty Free from Pexels -->
 
             <div id="i_div3">
                 <img src="{% static 'images/guy_with_bball.webp' %}" alt="Guy with a basketball">
@@ -26,7 +49,17 @@
 
     <br>
 
-    <div id="i_div1">   
+    <!-- This div contains informative text, url linked buttons, and images -->
+
+    <div class="info_div">   
+
+        <!-- This nested div is for an image in our images folder - Royalty Free from Pexels -->
+
+        <div id="i_div3">
+                <img src="{% static 'images/bball_hoop.webp' %}" alt="Basketball hoop">
+        </div>
+
+        <!-- This is a nested div which has informative text and a button linking to the manage events page -->
 
         <div id="i_div2">
             <h4>Manage all of your booked events with ease! Hoop and Go provides simplicity in managing your bookings to ensure you never miss a game.</h4>
@@ -35,29 +68,41 @@
                     <button class="h_btn">Manage My Events</button>
                 </a>
         </div>
-
-            <div id="i_div3">
-                <img src="{% static 'images/bball_hoop.webp' %}" alt="Basketball hoop">
-            </div>
-
+       
     </div>
 
     <br>
 
-    <div id="i_div1">   
+    <!-- This div contains informative text, url linked buttons, and images -->
+
+    <div class="info_div">   
+
+        <!-- This is a nested div which has informative text and a button linking to the manage events page -->
 
         <div id="i_div2">
-            <h4>View and manage your account information. Let others know more about you! A world where people unite for basketball is a good world!</h4>
+            <h4>View and edit your account information. Let others know more about you! A world where people unite for basketball is a good world!</h4>
+                
+                <!-- This is an if statement, it checks whether a user is authenticated/logged in when clicking the edit profile button -->
+                <!-- If they are logged in, it brings then to the edit profile page -->
+
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'account_email' %}">
+                    <a href="{% url 'edit_profile' %}">
                         <button class="h_btn">View My Account</button>
                     </a>
+
+                <!-- If they are not logged in, it brings them to the login page -->
+
                 {% else %}
                     <a href="{% url 'account_login' %}">
                         <button class="h_btn">Login to Account</button>
                     </a>
+
+                <!-- Endif ends the if statement -->
+
                 {% endif %}
         </div>
+
+            <!-- This other nested div is for an image in our images folder - Royalty Free from Pexels -->
 
             <div id="i_div3">
                 <img src="{% static 'images/ladies_bball.webp' %}" alt="Ladies playing basketball">
@@ -65,12 +110,6 @@
 
     </div>
 
-    <!-- This div structures the footer of the page -->
-
-    <footer class="container-fluid bg-light py-3 mt-5">
-        <div class="text-center">
-            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
-        </div>
-
+<!-- Endblock signals the end of the block content of a web page -->
 
 {% endblock %}

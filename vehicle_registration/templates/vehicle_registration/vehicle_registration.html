@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container mt-5">
-    <div class="card shadow p-4">
+    <div id="vehicle_div">
         <h2 class="mb-4">Register Vehicle</h2>
 
         {% if messages %}
@@ -45,19 +45,12 @@
                 {{ form.model }}
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" id="reg_veh_btn">
                 Register Vehicle
             </button>
         </form>
 
     </div>
-
-<!-- This div structures the footer of the page -->
- 
-    <footer class="container-fluid bg-light py-3 mt-5">
-        <div class="text-center">
-            <p class="mb-0">&copy; 2026 Hoop and Go. All rights reserved.</p>
-        </div>
-    </footer>
+</div>
 
 {% endblock %}

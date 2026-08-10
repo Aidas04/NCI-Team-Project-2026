@@ -4,6 +4,23 @@
 -->
 <ul class="d-flex justify-content-evenly">
 
+     <li class="list-inline-item dropdown">
+        <a class="text-black nav-link d-block d-lg-none dropdown-toggle" href="#" id="mobile-user-options" role="button"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="text-center"  id="home-link-profile">
+                <div>
+                    <i class="fas fa-user fa-lg"></i>
+                </div>
+                <p class="my-0">Explore</p>
+            </div>
+        </a>
+        <ul class="dropdown-menu border-0" aria-labelledby="user-options">
+            <li><a class="dropdown-item" href="{% url 'home' %}" id="home-link">Home</a></li>
+            <li><a class="dropdown-item" href="{% url 'events' %}" id="home-link">Browse Events</a></li>
+            <li><a class="dropdown-item" href="{% url 'manage_events' %}" id="home-link">Manage My Events </a></li>
+        </ul>
+    </li>
+
     <li class="list-inline-item dropdown">
         <a class="text-black nav-link d-block d-lg-none dropdown-toggle" href="#" id="mobile-user-options" role="button"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,7 +35,9 @@
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                     <li><a href="{% url 'admin:index' %}" class="dropdown-item">Admin</a></li>
+                    <li><a href="{% url 'create_event' %}" class="dropdown-item">Create Event</a></li>
                 {% endif %}
+                <li><a href="{% url 'edit_profile' %}" class="dropdown-item">Edit Profile</a></li>
                 <li><a href="{% url 'account_email' %}" class="dropdown-item">Email</a></li>
                 <li><a href="{% url 'account_change_password' %}" class="dropdown-item">Change Password</a></li>
                 <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
@@ -29,21 +48,6 @@
         </ul>
     </li>
 
-    <li class="list-inline-item dropdown">
-        <a class="text-black nav-link d-block d-lg-none dropdown-toggle" href="#" id="mobile-user-options" role="button"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="text-center"  id="home-link-profile">
-                <div>
-                    <i class="fas fa-user fa-lg"></i>
-                </div>
-                <p class="my-0">Home</p>
-            </div>
-        </a>
-        <ul class="dropdown-menu border-0" aria-labelledby="user-options">
-            <li><a class="dropdown-item" href="{% url 'home' %}" id="home-link">Home</a></li>
-            <li><a class="dropdown-item" href="{% url 'events' %}" id="home-link">Browse Events</a></li>
-            <li><a class="dropdown-item" href="{% url 'manage_events' %}" id="home-link">Manage My Events </a></li>
-        </ul>
-    </li>
+   
 
 </ul>

@@ -1,4 +1,6 @@
-# Manage Events Views used for backend functionality of the manage events page - Aidas Kibas.
+# Manage Events Views used for backend functionality of the manage events page - Aidas Kibas and Michal Pokojny.
+
+# Imports necessary for the python backend coding of the webpage
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,21 +12,57 @@ from datetime import datetime
 from home.models import Event
 from .forms import CreateEventForm
 from home.models import Booking
+from vehicle_registration.models import Vehicle
 
 
-# logged in user can change first name and last name, allauth already handles email/password
+# logged in user can change first name and last name, allauth already handles email/password - Michal Pokojny
+
 @login_required(login_url='account_login')
 def edit_profile(request):
     user = request.user
 
+    # Get the user's vehicle if one already exists
+    vehicle = Vehicle.objects.filter(student=user).first()
+
     if request.method == "POST":
+        # Update personal details
         user.first_name = request.POST.get("first_name", "").strip()
         user.last_name = request.POST.get("last_name", "").strip()
+
+        # Update vehicle details if user has a vehicle
+        if vehicle:
+            registration_plate = request.POST.get("registration_plate", "").strip()
+            make = request.POST.get("make", "").strip()
+            model = request.POST.get("model", "").strip()
+
+            # Check if another vehicle already uses this registration plate
+            duplicate_vehicle = Vehicle.objects.filter(registration_plate__iexact=registration_plate).exclude(id=vehicle.id).exists()
+
+            if duplicate_vehicle:
+                messages.error(request, "This registration plate is already registered.")
+
+                return render(request, "manage_events/edit_profile.html", {"user": user, "vehicle": vehicle})
+
+            # Save vehicle changes
+            vehicle.registration_plate = registration_plate
+            vehicle.make = make
+            vehicle.model = model
+            vehicle.save()
+
+        # Save user details
         user.save(update_fields=["first_name", "last_name"])
+
         messages.success(request, "Your details have been updated.")
         return redirect("edit_profile")
 
-    return render(request, "manage_events/edit_profile.html", {"user": user})
+    return render(
+        request,
+        "manage_events/edit_profile.html",
+        {
+            "user": user,
+            "vehicle": vehicle,
+        }
+    )
 
 # organiser create event page, only logged in users can get here
 # we also check the password matches before letting them create the event
@@ -84,11 +122,16 @@ def delete_event(request, event_id):
     # GET request just shows the confirm page
     return render(request, "manage_events/delete_event.html", {"event": event})
 
-# Helper function to get user bookings ensuring that the event datetime is timezone-aware and checking if the event is in the past.
+# Aidas Kibas
+# Helper function to get user bookings ensuring that the event datetime is timezone-aware and checking if the event is in the past - Aidas Kibas
+
 def get_user_bookings(user):
     bookings = Booking.objects.filter(
         student=user
-    ).select_related("event").order_by("-booked_at")
+    ).select_related("event").order_by("-booked_at") # Orders the event based on most recently booked
+
+    # For loop iterating through bookings using the timezone import to create a variable which stores the combined date and start time of an event
+    # This tracks the events date and time with the current real date and time for responsive behaviour
 
     for booking in bookings:
         event_datetime = timezone.make_aware(
@@ -98,36 +141,38 @@ def get_user_bookings(user):
             )
         )
 
+        # Booking.is_past is a variable which determines if a bookings event_datetime is less than the current real time
+        # This ensures that booking.is_past can be used to detemine whether an events date and time have passed the current real time
+
         booking.is_past = event_datetime < timezone.now()
+
+    # Return the bookings 
 
     return bookings
 
-# Here i have a function to manage events which checks if the user is authenticated and retrieves their bookings. It also checks if the event is in the past and passes the bookings to the template for rendering.
+# Aidas Kibas
+# Here i have a function to manage events which checks if the user is authenticated and retrieves their bookings 
+# It also checks if the event is in the past and passes the bookings to the template for rendering.
 
-@login_required(login_url='account_login')
-def manage_events(request):
-    bookings = []
+@login_required(login_url='account_login') # Requires login to view the page 
+def manage_events(request): # Function name
+    bookings = [] # Bookings stored in an array
+
+    # If the user is authenticated, then retreive their bookings by using the get_user_bookings function
 
     if request.user.is_authenticated:
         bookings = get_user_bookings(request.user)
 
-    for booking in bookings:
-        event_datetime = datetime.combine(
-            booking.event.date,
-            booking.event.start_time
-        )
-
-        # Make the datetime timezone-aware
-        event_datetime = timezone.make_aware(event_datetime)
-
-        booking.is_past = event_datetime < timezone.now()
+    # Return the manage_events_page.html to the user
 
     return render(request, "home/manage_events_page.html", {
         "bookings": bookings,
     })
 
+# Aidas Kibas
 # Here i have a function to remove a booking which checks if the user is authenticated and retrieves the booking by its ID. 
-# If the booking exists, it deletes it and displays a success message. If the booking does not exist, it displays an error message. Finally, it redirects back to the manage events page.
+# If the booking exists, it deletes it and displays a success message. If the booking does not exist, it displays an error message. 
+# Finally, it redirects back to the manage events page.
 
 def remove_booking(request, booking_id):
     if request.user.is_authenticated:
@@ -140,9 +185,11 @@ def remove_booking(request, booking_id):
 
     return manage_events(request)  # Redirect back to the manage events page
 
+# Aidas Kibas
 # Here i have a function to cancel a booking which checks if the user is authenticated and retrieves the booking by its ID.
 # If the booking exists, it displays a confirmation message asking the user if they are sure they want to cancel the booking. 
-# If the user confirms, it deletes the booking and displays a success message. If the booking does not exist, it displays an error message. Finally, it redirects back to the manage events page.
+# If the user confirms, it deletes the booking and displays a success message. If the booking does not exist, it displays an error message. 
+# Finally, it redirects back to the manage events page.
 
 def cancel_booking(request, booking_id):
 
@@ -154,10 +201,17 @@ def cancel_booking(request, booking_id):
 
         booking = Booking.objects.filter(student=request.user, id=booking_id).first()
 
+        # If confirm cancellation is clicked and the booking exists then delete the booking
+        # Display a success message to refund the money (future feature)
+
         if confirm_refund and booking:
             booking.delete()
             bookings = get_user_bookings(request.user)
-            messages.success(request, "Your booking has been canceled.")
+            messages.success(request, "You will receive your refund within the next 5 working days.")
+
+        # Else if the confirm cancellation is requested, then display the warning message below 
+        # Return the user to the manage_events_page with the booking that is waiting for confirmed cancellation to be clicked
+
         elif booking:
             messages.warning(
                 request,
@@ -171,8 +225,13 @@ def cancel_booking(request, booking_id):
                     "pending_booking": booking,
                 }
             )
+
+        # Else, display a warning message if the booking does not exist
+
         else:
             messages.warning(request, "This event does not exist in your booked events.")
+
+        # Return the manage_events_page with current bookings and no pending request bookings
 
         return render(
         request,
