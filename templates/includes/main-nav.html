@@ -1,11 +1,19 @@
 <!-- Edited by: 
  Ionut Ciobanu 
+ Aidas Kibas
  
 -->
 {% load static %}
 
+<!-- This div is created to hold the contents of the nav bar for simpler styling -->
+
 <div class="collapse navbar-collapse container-fluid" id="text-nav">
+
+    <!-- This unordered list is created to list the elements in the nav bar -->
+
     <ul class="navbar-nav w-auto mx-auto">
+
+        <!-- These li elements list the urls to different pages of the website. Image for the logo was created by Aidas Kibas using Canva -->
 
         <li class="nav-item"><a class="nav-link" id="nav-logo"><img src="{% static 'images/HnG-logo.jpg' %}" alt="Hoop and Go Logo" width="50" height="46"></a></li>   
         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" id="home-link">Home</a></li>
@@ -21,17 +29,30 @@
                     <p class="my-0">Accounts</p>
                 </div>
             </a>
+
+            <!-- This is a nested unordered list which is created with a dropdown menu for the accounts items -->
+
             <ul class="dropdown-menu border-0" aria-labelledby="user-options">
+
+                <!-- If the user is authenticated/logged in then show the following: -->
+
                 {% if request.user.is_authenticated %}
+
+                    <!-- Only if the user is a superuser/admin show this item: -->
                     {% if request.user.is_superuser %}
                         <li><a href="{% url 'admin:index' %}" class="dropdown-item">Admin</a></li>
                     {% endif %}
+
                     <!-- adding create event here, same dropdown-item style as the other account links -->
+
                     <li><a href="{% url 'create_event' %}" class="dropdown-item">Create Event</a></li>
                     <li><a href="{% url 'edit_profile' %}" class="dropdown-item">Edit Profile</a></li>
                     <li><a href="{% url 'account_email' %}" class="dropdown-item">Email</a></li>
                     <li><a href="{% url 'account_change_password' %}" class="dropdown-item">Change Password</a></li>
                     <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
+
+                <!-- If the user is not authenticated/logged in, show the following items: -->
+
                 {% else %}
                     <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
                     <li><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
