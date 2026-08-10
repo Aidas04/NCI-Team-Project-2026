@@ -6,7 +6,7 @@ run " docker compose up --build " to compose image and then use link http://loca
 
 ## Introduction
 
-This project is a sports gathering platform built to help basketball players find and join 5-a-side games nearby. The website is for users who want to easily discover, join, and manage basketball event bookings without the hassle of organising games manually.
+This project is a sports gathering platform built to help basketball players find and join 2,3,4,5,6-a-side games nearby. The website is for users who want to easily discover, join, and manage basketball event bookings without the hassle of organising games manually.
 
 The website is built using the Django framework, containerised with Docker, hosted on a free-tier PostgreSQL database (Neon), and follows an agile methodology approach for development using Jira for sprint tracking.
 
@@ -134,7 +134,6 @@ The core entities are User, Event, Booking, and Payment, linked as follows: a Us
 - Edit personal account details
 - Organiser-only event creation and deletion, password-protected
 - **Stripe payment integration** for paid events, allowing organisers to charge entry fees and users to pay securely at checkout.
-- "Every 10th event free" loyalty incentive once payments are introduced.
 - **Search events by location**, with results paginated 6 per page.
 - **Create Event page**, restricted to logged-in users, with a fixed list of tournament formats (1v1–6v6) and 15 preset Dublin locations to choose from.
 - **Delete Event page**, only visible to the event's organiser, protected by password confirmation.
@@ -152,6 +151,7 @@ The core entities are User, Event, Booking, and Payment, linked as follows: a Us
 - Support additional sports beyond basketball.
 - Add email notifications for booking confirmations and cancellations.
 - Add an admin dashboard for organisers to see booking stats per event.
+- "Every 10th event free" loyalty feature.
 
 <br>
 
@@ -201,6 +201,8 @@ docker compose exec web python manage.py test --keepdb
 - psycopg2-binary
 - python-decouple
 - gunicorn
+- whitenoise
+- stripe
 
 <br>
 
