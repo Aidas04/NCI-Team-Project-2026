@@ -201,6 +201,8 @@ docker compose exec web python manage.py test --keepdb
 - psycopg2-binary
 - python-decouple
 - gunicorn
+- whitenoise
+- stripe
 
 <br>
 
