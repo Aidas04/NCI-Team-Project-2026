@@ -6,7 +6,7 @@ run " docker compose up --build " to compose image and then use link http://loca
 
 ## Introduction
 
-This project is a sports gathering platform built to help basketball players find and join 5-a-side games nearby. The website is for users who want to easily discover, join, and manage basketball event bookings without the hassle of organising games manually.
+This project is a sports gathering platform built to help basketball players find and join 2,3,4,5,6-a-side games nearby. The website is for users who want to easily discover, join, and manage basketball event bookings without the hassle of organising games manually.
 
 The website is built using the Django framework, containerised with Docker, hosted on a free-tier PostgreSQL database (Neon), and follows an agile methodology approach for development using Jira for sprint tracking.
 
