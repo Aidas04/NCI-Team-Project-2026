@@ -17,23 +17,84 @@
 
     <form method="POST">
         {% csrf_token %}
-        <label>First name</label>
-        <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control mb-3">
 
-        <label>Last name</label>
-        <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control mb-3">
+        <!-- Personal Details -->
+        <h4>Personal Details</h4>
 
-        <p class="text-muted">Want to change your email or password? <a href="{% url 'account_email' %}">Click here</a>.</p>
+        <label for="first_name">First name</label>
+        <input 
+            type="text"
+            name="first_name"
+            value="{{ user.first_name }}"
+            class="form-control mb-3"
+        >
 
-        <button type="submit" class="general_btn">Save Changes</button>
-    </form>
+        <label for="last_name">Last name</label>
+        <input
+            type="text"
+            name="last_name"
+            value="{{ user.last_name }}"
+            class="form-control mb-3"
+        >
+        <!-- Vehicle Details -->
 
-    {% if user.vehicle %}
         <hr>
-        <h4>My Registered Vehicle</h4>
-        <p>Plate: {{ user.vehicle.registration_plate }}</p>
-        <p>Make/Model: {{ user.vehicle.make }} {{ user.vehicle.model }}</p>
-    {% endif %}
+        {% if vehicle %}
+
+        <h4>Vehicle Details</h4>
+
+        <label for="registration_plate">Registration Plate</label>
+        <input
+            type="text"
+            name="registration_plate"
+            value="{{ vehicle.registration_plate }}"
+            class="form-control mb-3"
+            placeholder="Example: 241-D-12345"
+        >
+
+        <label for="make">Vehicle Make</label>
+        <input
+            type="text"
+            name="make"
+            value="{{ vehicle.make }}"
+            class="form-control mb-3"
+            placeholder="Example: Toyota"
+        >
+
+        <label>Vehicle Model</label>
+        <input
+            type="text"
+            name="make"
+            value="{{ vehicle.model }}"
+            class="form-control mb-3"
+            placeholder="Example: Corolla"
+        >
+
+        {% else %}
+
+        <hr>
+
+        <h4>Vehicle Details</h4>
+
+        <p class="text-muted">You have not registered a vehicle yet.</p>
+
+        <a href="{% url 'vehicle_registration' %}" class="general_btn">
+            Register Vehicle
+        </a>
+
+        {% endif %}
+
+        <hr>
+
+        <p class="text-muted">
+            Want to change your email or password?
+            Please use the separate account settings.
+        </p>
+
+        <button type="submit" class="general_btn">
+            Save Changes
+        </button>
+    </form>
 </div>
 
 {% endblock %}

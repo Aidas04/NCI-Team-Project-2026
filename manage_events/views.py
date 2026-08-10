@@ -12,6 +12,7 @@ from datetime import datetime
 from home.models import Event
 from .forms import CreateEventForm
 from home.models import Booking
+from vehicle_registration.models import Vehicle
 
 
 # logged in user can change first name and last name, allauth already handles email/password - Michal Pokojny
@@ -20,14 +21,48 @@ from home.models import Booking
 def edit_profile(request):
     user = request.user
 
+    # Get the user's vehicle if one already exists
+    vehicle = Vehicle.objects.filter(student=user).first()
+
     if request.method == "POST":
+        # Update personal details
         user.first_name = request.POST.get("first_name", "").strip()
         user.last_name = request.POST.get("last_name", "").strip()
+
+        # Update vehicle details if user has a vehicle
+        if vehicle:
+            registration_plate = request.POST.get("registration_plate", "").strip()
+            make = request.POST.get("make", "").strip()
+            model = request.POST.get("model", "").strip()
+
+            # Check if another vehicle already uses this registration plate
+            duplicate_vehicle = Vehicle.objects.filter(registration_plate__iexact=registration_plate).exclude(id=vehicle.id).exists()
+
+            if duplicate_vehicle:
+                messages.error(request, "This registration plate is already registered.")
+
+                return render(request, "manage_events/edit_profile.html", {"user": user, "vehicle": vehicle})
+
+            # Save vehicle changes
+            vehicle.registration_plate = registration_plate
+            vehicle.make = make
+            vehicle.model = model
+            vehicle.save()
+
+        # Save user details
         user.save(update_fields=["first_name", "last_name"])
+
         messages.success(request, "Your details have been updated.")
         return redirect("edit_profile")
 
-    return render(request, "manage_events/edit_profile.html", {"user": user})
+    return render(
+        request,
+        "manage_events/edit_profile.html",
+        {
+            "user": user,
+            "vehicle": vehicle,
+        }
+    )
 
 # organiser create event page, only logged in users can get here
 # we also check the password matches before letting them create the event
