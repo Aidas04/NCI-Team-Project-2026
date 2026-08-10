@@ -2,8 +2,12 @@
 #   Aidas Kibas
 #
 
+# Importing necessary items for url paths 
+
 from django.urls import path
 from . import views
+
+# These are my url paths for the manage events page, it shows all the possible pages that can be accessed from the manage events page
 
 urlpatterns = [
     path('', views.manage_events, name='manage_events'),

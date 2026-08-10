@@ -117,9 +117,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',  # social account integration
     'crispy_forms',  # for better form rendering
     'crispy_forms.bootstrap',  # for Bootstrap form rendering
-    'home',
-    'manage_events',
-    'vehicle_registration',
+    'home', # home page
+    'manage_events', # manage events page
+    'vehicle_registration', # vehicle registration page
 ]
 
 

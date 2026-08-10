@@ -1,103 +1,187 @@
 <!-- Manage Events Page HTML - Aidas Kibas -->
 
+<!-- Classes are used to style many similar elements together, whereas ID's are used to style unique elements individually -->
+
+<!-- Extends base.html takes the elements from base.html and copies them here for the classic html structure. I.e. Head, body, footer... -->
+
 {% extends "base.html" %}
 {% block content %}
+
+<!-- Load static loads the static files such as css and images to allow styling -->
+
 {% load static %}
 
     <!-- This div structures the heading of the page and the text below it -->
 
-    <div class="head_div et_pb_bottom_inside_divider">
-        <h1 class="page_head">Manage Events</h1>
-        <p class="lead-text">Your booked events live here. Scroll through to view the details of a specific event!</p>
-        <div class="head_design" style="background-size: 552px 40px; bottom: -0.18335px;"></div>
+    <div class="head_div">
+        <h1 class="page_head">Manage Events</h1> <!-- H1 is heading of the page -->
+        <p class="lead-text">Your booked events live here. Scroll through to view the details of a specific event!</p> <!-- Text below the heading -->
     </div>
 
+    <!-- BR creates a small break (blank space) between divs in a web page -->
     <br>
 
-    <!-- This div structures the display of the user's booked events -->
+    <!-- This div structures the display of the user's booked events and other support text -->
 
-    <div border="1" class="container-fluid mt-5 p-3">
-        <div id="info_text">
+    <div class="container-fluid"> <!-- container-fluid spans a div for the entire width of the viewport - Bootstrap -->
+        <div id="info_text"> 
         <h1>My Bookings</h1>
-        <p class="lead-text">View and manage your bookings below.</p><br>
+        <p class="lead-text">View and manage your bookings below.</p>
+        <br>
         </div>
+
+    <!-- This if statement checks whether the user is authenticated/logged into an account -->
+    <!-- If they are logged in, then the system displays their username -->
         {% if request.user.is_authenticated %}
             <div class="support_text">
-            <p>You are logged in as: <strong>{{ request.user.username }}</strong>.</p>
+            <p>You are logged in as: <strong>{{ request.user.username }}</strong>.</p> <!-- Display username if logged in -->
             </div>
 
+            <!-- This if statement checks whether the logged in user has any bookings -->
+
             {% if bookings %}
+
+                <!-- This for loop iterates through the users bookings (if any) and displays them in the format created below -->
+
                 {% for booking in bookings %}
+
+                    <!-- This div is responsible for displaying the bookings in a set format -->
+
                     <div class="m_display">
+
+                        <!-- This if statement checks whether a bookings date and time is past the current date and time -->
+                        <!-- E.g. An event is happening on the 01.01.26 @12:30pm and todays current date and time is 01.02.26 @11am -->
+
                         {% if booking.is_past %}
+
+                            <!-- I ensure that the user can see that the event is past by highlighting the status in red -->
+                            <!-- The rest of this format follows a similar format to the events page format to describe the event to the user -->
+
                             <p style="color: red;"><strong>Status:</strong> Past Event</p>
                             <p><strong>Event:</strong> {{ booking.event.title }}</p>
                             <p><strong>Sport:</strong> {{ booking.event.sport_type }}</p>
                             <p><strong>Location:</strong> {{ booking.event.location }}</p>
                             <p><strong>Date:</strong> {{ booking.event.date }}</p>
                             <p><strong>Time:</strong> {{ booking.event.start_time }}</p>
+
+                        <!-- If the booking is not past, then this else statement shows the upcoming booking format for the user -->
+
                         {% else %}
+
+                            <!-- I ensure that the user can see that the event is upcoming by highlighting the status in green -->
+                            <!-- The rest of this format follows a similar format to the events page format to describe the event to the user -->
+
                             <p style="color: green;"><strong>Status:</strong> Upcoming Event</p>
                             <p><strong>Event:</strong> {{ booking.event.title }}</p>
                             <p><strong>Sport:</strong> {{ booking.event.sport_type }}</p>
                             <p><strong>Location:</strong> {{ booking.event.location }}</p>
                             <p><strong>Date:</strong> {{ booking.event.date }}</p>
                             <p><strong>Time:</strong> {{ booking.event.start_time }}</p>
+
+                        <!-- endif ends the if statement above -->
+
                         {% endif %}
+
+                        <!-- This if statement checks again if the bookings date and time is past -->
                         
                         {% if booking.is_past %}
+
+                        <!-- If the event date and time is past the current date and time then it displays the remove booking button -->
+                        <!-- This means that the user cannot request a refund on a past event, only remove it from their bookings -->
+
                         <form method="post" action="{% url 'remove_booking' booking.id %}">
                             {% csrf_token %}
                             <button class="danger_btns">Remove Booking</button>
                         </form>
+
+                        <!-- This else statement is relevant for bookings with an upcoming date and time-->
+
                         {% else %}
+
+                        <!-- This nested if statement checks whether the request cancellation button has been clicked -->
+                        <!-- If clicked, it displays the confirm cancellation button which cancels an upcoming event for a user -->
+
                         {% if pending_booking and pending_booking.id == booking.id %}
                         <form method="post" class="d-inline">
                         {% csrf_token %}
                         <input type="hidden" name="booking_id" value="{{ booking.id }}">
                         <input type="hidden" name="confirm_refund" value="1">
-                        <button type="submit" class="danger_btns">Confirm Cancelation</button>
+                        <button type="submit" class="danger_btns">Confirm Cancellation</button>
                         </form>
+
+                        <!-- This nested else statement works on the request cancellation button. -->
+                        <!-- If the request cancellation button is pressed, then the screen redirects to the cancel_booking screen -->
+                        <!-- This screen is the same as the current screen, however, the booking which is requested to be cancelled... -->
+                        <!-- Is the only one displayed on screen with the confirm cancellation button -->
+                        <!-- This ensures users can request a refund for their upcoming booking if they cannot attend -->
+
                         {% else %}
                         <form method="post" action="{% url 'cancel_booking' booking.id %}" class="d-inline">
                         {% csrf_token %}
                         <input type="hidden" name="booking_id" value="{{ booking.id }}">
-                        <button type="submit" class="danger_btns">Request Cancelation</button><br>
+                        <button type="submit" class="danger_btns">Request Cancellation</button><br>
                         </form>
+
+                        <!-- Endif twice to end both the if and nested if statements -->
+
                         {% endif %}
                         {% endif %}
-                    </div><br>
+                    </div>
+                    <br>
+
+                <!-- Endfor ends the for loop which iterates through the users bookings -->
+                    
                 {% endfor %}
+
+            <!-- If there are no bookings, then display the text below -->
+
             {% else %}
             <div id="no_bookings">
                 <p>No bookings found.</p>
             </div>
             {% endif %}
+
+        <!-- If the user is not authenticated/logged in, then display the message below -->
+
         {% else %}
             <p>You are not logged in. Please log in to view your events.</p>
         {% endif %}
     </div>
+
+    <!-- After the breaks, i create a small div for the Book Events: text -->
 
     <br><br><br>
     <div class="support_text">
         <p>Book Events:</p>
     </div>  
     
+    <!-- This div is the exact same as the homepage div -->
+    <!-- It displays small informative text, a url linked button to view events, and an image - all styled -->
+
     <div class="info_div">   
 
         <div id="i_div2">
+
+            <!-- Informative text -->
+
             <h4>With Hoop and Go, you can easily browse and book a basketball event without the hassle of constant communication with a group of people!</h4>
+
+                <!-- The url linked button -->
 
                 <a href="{% url 'events' %}">
                     <button class="h_btn">View Events</button>
                 </a>
         </div>
 
+            <!-- This div includes the image -->
+
             <div id="i_div3">
                 <img src="{% static 'images/guy_with_bball.webp' %}" alt="Guy with a basketball">
             </div>
 
     </div>
+
+<!-- Endblock signals the end of the code included in the block content -->
 
 {% endblock %}
  
