@@ -300,6 +300,7 @@ STORAGES = {
     },
 }
 
+WHITENOISE_MANIFEST_STRICT = False  # Disable strict mode to avoid issues with missing files in the manifest
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
