@@ -117,9 +117,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',  # social account integration
     'crispy_forms',  # for better form rendering
     'crispy_forms.bootstrap',  # for Bootstrap form rendering
-    'home',
-    'manage_events',
-    'vehicle_registration',
+    'home', # home page
+    'manage_events', # manage events page
+    'vehicle_registration', # vehicle registration page
 ]
 
 
@@ -300,6 +300,7 @@ STORAGES = {
     },
 }
 
+WHITENOISE_MANIFEST_STRICT = False  # Disable strict mode to avoid issues with missing files in the manifest
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

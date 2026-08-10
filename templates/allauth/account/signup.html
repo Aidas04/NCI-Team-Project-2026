@@ -9,6 +9,7 @@
 {% endblock head_title %}
 {% block content_inner %}
     <!-- Signup form title -->
+<div class="non-main_divs">
     <h1 class="auth-title text-center mb-3">{% trans "Sign Up" %}</h1>
     {% setvar link %}
         <a href="{{ login_url }}">
@@ -49,4 +50,5 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+</div>
 {% endblock content_inner %}

@@ -9,6 +9,7 @@
     {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content_inner %}
+<div class="non-main_divs">
     <h1 class="auth-title text-center mb-3">{% trans "Sign In" %}</h1>
     {% url 'account_login' as login_url %}
     <!-- Login form using CustomLoginForm with Bootstrap styling -->
@@ -34,6 +35,8 @@
         <span class="mx-1">&middot;</span>
         <a href="{% url 'account_reset_password' %}">{{ _("Forgot password?") }}</a>
     </div>
+</div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock content_inner %}
 {% block extra_body %}
     {{ block.super }}

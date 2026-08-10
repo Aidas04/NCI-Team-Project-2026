@@ -8,6 +8,8 @@
     {% trans "Email Addresses" %}
 {% endblock head_title %}
 {% block content_inner %}
+
+<div class="non-main_divs">
     <!-- Email management form title -->
     <h3 class="fw-bold mb-4 text-center">{% trans "Email Addresses" %}</h3>
     {% if emailaddresses %}
@@ -89,6 +91,8 @@
             {% endslot %}
         {% endelement %}
     {% endif %}
+</div>
+<br><br>
 {% endblock content_inner %}
 {% block extra_body %}
     <!-- Load JavaScript for email management functionality -->

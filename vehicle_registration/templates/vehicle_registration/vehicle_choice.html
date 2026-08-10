@@ -5,24 +5,23 @@
 {% block content %}
 
 <div class="container mt-5">
-    <div class="card shadow p-4 text-center">
-        <h2> Do you have a vehicle?</h2>
+    <div id="veh_choice_div">
+        <h2 class="page_head"> Do you have a vehicle?</h2>
 
-        <p class="mt-3">
-            If you have a vehicle, you can register it for car park.
+        <p class="lead-text">
+            If you have a vehicle, you can register it for the car park.
             Otherwise, you can continue and join the event without registering one.
         </p>
         
-        <div class="mt-4">
-            <a href="{% url 'vehicle_registration' %}?event_id={{ event_id }}"
-                class="btn btn-primary">
+        <div>
+            <a id="vehicle_btn" href="{% url 'vehicle_registration' %}?event_id={{ event_id }}">
                 Yes, register my vehicle
             </a>
-            <a href="{% url 'continue_booking' event_id %}"
-                class="btn btn-secondary">
+            <a id="no_vehicle_btn" href="{% url 'continue_booking' event_id %}">
                 No, continue without vehicle
             </a>
         </div>
+        <br>
     </div>
 </div>
 
